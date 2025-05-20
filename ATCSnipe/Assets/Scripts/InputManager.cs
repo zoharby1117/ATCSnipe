@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot; //this is what we use for our on foot actions.
         motor = GetComponent<PlayerMotor>(); //the playermotor component we dragged into the inspector of the Player object
+        OnFootEnable();
     }
 
     void FixedUpdate() //not sure what the difference between this and update is
