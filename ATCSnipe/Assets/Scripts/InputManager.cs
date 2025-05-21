@@ -7,12 +7,14 @@ public class InputManager : MonoBehaviour
     private PlayerInput.OnFootActions onFoot; //onFoot action map
 
     private PlayerMotor motor; //will have the PlayerMotor component of the object
+    private PlayerLook look;
 
     void Awake() //awake is while the game is initialized, i.e. before start
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot; //this is what we use for our on foot actions.
         motor = GetComponent<PlayerMotor>(); //the playermotor component we dragged into the inspector of the Player object
+        look = GetComponent<PlayerLook>(); //the PlayerLook component
         OnFootEnable();
     }
 
@@ -23,6 +25,11 @@ public class InputManager : MonoBehaviour
         motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
         //Movement is an action in the actionmap that outputs a value
 
+    }
+
+    void LateUpdate()
+    {
+        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());//reads Look's vector2
     }
 
     //the following code enables or disables the onFoot action map, useful in situations when you shouldnt be moving
