@@ -19,6 +19,8 @@ public class PickUpController : MonoBehaviour
         //disable script
         rb.isKinematic = false;
         coll.isTrigger = false;
+
+        container.localScale = Vector3.one;
     }
     private void Update()
     {
@@ -40,6 +42,8 @@ public class PickUpController : MonoBehaviour
         slotFull = true;
 
         //Make object a child of the camera so it moves with it
+        container.localScale = transform.localScale;
+
         transform.SetParent(container);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -63,6 +67,11 @@ public class PickUpController : MonoBehaviour
 
         transform.SetParent(null);
 
+        container.localScale = Vector3.one;
         //disable other script here
+
+        //add force: vector, mode
+        rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
+        rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
     }
 }
