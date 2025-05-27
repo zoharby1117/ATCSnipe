@@ -19,7 +19,7 @@ public class ViewPhoto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        List<Transform[]> album = TakePhoto.photoAlbum;
+        List<ObjInfo[]> album = TakePhoto.photoAlbum;
         if (Input.GetKeyDown(KeyCode.X) && album.Count > 0)
         {
             viewing = !viewing; //basically flips from true to false and vice versa.
@@ -50,16 +50,16 @@ public class ViewPhoto : MonoBehaviour
     {
         //PlayerInput.OnFoot.Disable();
         GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable");
-        List<Transform[]> album = TakePhoto.photoAlbum;
-        Transform[] photo = album[i];//this is a transform[]
+        List<ObjInfo[]> album = TakePhoto.photoAlbum;
+        ObjInfo[] photo = album[i];
         for (int i = 0; i < objectsInPhoto.Length; i++)
         {
             GameObject go = objectsInPhoto[i];//the object
-            Transform t = photo[i];//its respective transform from the photo we took
+            ObjInfo info = photo[i];//its respective transform from the photo we took
 
-            go.transform.position = t.position;
-            go.transform.rotation = t.rotation;
-            go.transform.localScale = t.localScale;
+            go.transform.position = info.position;
+            go.transform.rotation = info.rotation;
+            go.transform.localScale = info.scale;
 
         }
 
