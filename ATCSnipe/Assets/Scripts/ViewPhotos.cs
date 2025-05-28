@@ -22,34 +22,30 @@ public class ViewPhoto : MonoBehaviour
         List<ObjInfo[]> album = TakePhoto.photoAlbum;
         if (Input.GetKeyDown(KeyCode.X) && album.Count > 0)
         {
-            viewing = !viewing; //basically flips from true to false and vice versa.
-            if (viewing)
-            {
-                viewPhoto();
-            }
+            viewPhoto();
+            //viewing = !viewing; //basically flips from true to false and vice versa.
+            //if (viewing)
+            //{
+            //    viewPhoto();
+            //}
         }
-        //if (album.Count > 0)
+
+
+
+        //if (viewing)
         //{
-        //    {
-        //        viewPhoto();
-        //    }
+
+        //if (Input.GetKeyDown(KeyCode.RightArrow) && i < album.Count - 1)
+        //{
+        //    i++;
+        //    viewPhoto();
         //}
-
-
-        if (viewing)
-        {
-
-            if (Input.GetKeyDown(KeyCode.RightArrow) && i < album.Count - 1)
-            {
-                i++;
-                viewPhoto();
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && i > 0)
-            {
-                i--;
-                viewPhoto();
-            }
-        }
+        //else if (Input.GetKeyDown(KeyCode.LeftArrow) && i > 0)
+        //{
+        //    i--;
+        //    viewPhoto();
+        //}
+        //}
         //I need code that stores info from before the viewing photos otherwise we get locked here forever.
     }
 
@@ -68,7 +64,32 @@ public class ViewPhoto : MonoBehaviour
             go.transform.rotation = info.rotation;
             go.transform.localScale = info.scale;
 
+            boolean viewing = true;
+            while (viewing)//This keeps running, basically pausing the frames, until viewing is false in every run of viewphoto()
+                           //this way things are paused easily
+            {
+
+                if (Input.GetKeyDown(KeyCode.RightArrow) && i < album.Count - 1)
+                {
+                    i++;
+                    viewPhoto();
+                    viewing = false;//after the above view terminates, this loop will terminate as well.
+                                    //when the last loop terminates we go back to normal.
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow) && i > 0)//might add a way to go back to beginning/end later
+                {
+                    i--;
+                    viewPhoto();
+                    viewing = false;
+                }
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    viewing = false;//finish
+                }
+            }
         }
 
     }
+
+}
 }
