@@ -61,20 +61,38 @@ public class ViewPhotos : MonoBehaviour
             }
 
         }
-        if (viewing)
+        if (viewing && album.Count > 1)
         {
 
             //player.GetComponent<CharacterController>().minMoveDistance = 999;
 
-            if (Input.GetKeyDown(KeyCode.RightArrow) && i < album.Count - 1)
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                i++;
-                viewPhoto();
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && i > 0)
+                if (i < album.Count - 1)
+                {
+                    i++;
+                    viewPhoto();
+                }
+                else
+                {
+                    i = 0;
+                    viewPhoto();
+                }    
+
+                
+            } else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                i--;
-                viewPhoto();
+                if (i > 0)
+                {
+                    i--;
+                    viewPhoto();
+                }
+                else
+                {
+                    i = album.Count - 1;
+                    viewPhoto();
+                }
+                    
             }
         }
     }
