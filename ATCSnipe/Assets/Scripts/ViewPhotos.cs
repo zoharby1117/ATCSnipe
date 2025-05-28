@@ -54,6 +54,15 @@ public class ViewPhotos : MonoBehaviour
                     go.transform.rotation = info.rotation;
                     go.transform.localScale = info.scale;
                 }
+                GameObject[] makeInvisible = GameObject.FindGameObjectsWithTag("Player");
+                foreach (GameObject go in makeInvisible)
+                {
+                    Renderer r = go.GetComponent<Renderer>();
+                    if (r != null)
+                    {
+                        r.enabled = true;
+                    }
+                }
 
                 //end of copied code
                 //player.GetComponent<CharacterController>().minMoveDistance = temp;
@@ -77,10 +86,11 @@ public class ViewPhotos : MonoBehaviour
                 {
                     i = 0;
                     viewPhoto();
-                }    
+                }
 
-                
-            } else if (Input.GetKeyDown(KeyCode.LeftArrow))
+
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 if (i > 0)
                 {
@@ -92,7 +102,7 @@ public class ViewPhotos : MonoBehaviour
                     i = album.Count - 1;
                     viewPhoto();
                 }
-                    
+
             }
         }
     }
@@ -101,6 +111,15 @@ public class ViewPhotos : MonoBehaviour
 
     public void viewPhoto()
     {
+        GameObject[] makeInvisible = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject go in makeInvisible)
+        {
+            Renderer r = go.GetComponent<Renderer>();
+            if (r != null)
+            {
+                r.enabled = false;
+            }
+        }
         //(Player)player.GetComponent(InputManager).OnFootDisable();
         GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable");
         List<ObjInfo[]> album = TakePhoto.photoAlbum;
