@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;//lets us use lists
 
 
-public class ViewPhoto : MonoBehaviour
+public class ViewPhotos : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //private List<Transform[]> photoAlbum;
@@ -11,7 +11,7 @@ public class ViewPhoto : MonoBehaviour
     //private CharacterController cc;
     public Transform player;
 
-    private bool viewing;//uses bool not boolean apparently
+    public static bool viewing;//uses bool not boolean apparently
 
     private float temp;
 
@@ -20,7 +20,7 @@ public class ViewPhoto : MonoBehaviour
     {
         i = 0;//starts at first photo
         viewing = false;
-        temp = player.GetComponent<CharacterController>().minMoveDistance;
+        //temp = player.GetComponent<CharacterController>().minMoveDistance;
         tempPositions = TakePhoto.generateArray();
     }
 
@@ -55,14 +55,14 @@ public class ViewPhoto : MonoBehaviour
                 }
 
                 //end of copied code
-                player.GetComponent<CharacterController>().minMoveDistance = temp;
+                //player.GetComponent<CharacterController>().minMoveDistance = temp;
             }
 
         }
         if (viewing)
         {
 
-            player.GetComponent<CharacterController>().minMoveDistance = 999;
+            //player.GetComponent<CharacterController>().minMoveDistance = 999;
 
             if (Input.GetKeyDown(KeyCode.RightArrow) && i < album.Count - 1)
             {
