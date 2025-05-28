@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjInfo : MonoBehaviour
+public class ObjInfo
 {
     public Vector3 position;
     public Quaternion rotation;

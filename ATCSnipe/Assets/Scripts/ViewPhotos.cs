@@ -28,6 +28,13 @@ public class ViewPhoto : MonoBehaviour
                 viewPhoto();
             }
         }
+        //if (album.Count > 0)
+        //{
+        //    {
+        //        viewPhoto();
+        //    }
+        //}
+
 
         if (viewing)
         {
