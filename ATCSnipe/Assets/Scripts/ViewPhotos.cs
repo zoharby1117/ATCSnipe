@@ -35,6 +35,7 @@ public class ViewPhotos : MonoBehaviour
             if (viewing)
             {
                 tempPositions = TakePhoto.generateArray();
+                Time.timeScale = 0;//freeze physics
                 viewPhoto();
             }
             else
@@ -56,6 +57,7 @@ public class ViewPhotos : MonoBehaviour
 
                 //end of copied code
                 //player.GetComponent<CharacterController>().minMoveDistance = temp;
+                Time.timeScale = 1;
             }
 
         }
