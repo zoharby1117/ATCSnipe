@@ -22,24 +22,30 @@ public class InputManager : MonoBehaviour
     {
         //tell the playermotor to move using the value from our movement action
         //playermotor uses its ProcessMove method to move
-        motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
+        if (!ViewPhotos.viewing)
+        {
+            motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
+        }
         //Movement is an action in the actionmap that outputs a value
 
     }
 
     void LateUpdate()
     {
-        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());//reads Look's vector2
+        if (!ViewPhotos.viewing)
+        {
+            look.ProcessLook(onFoot.Look.ReadValue<Vector2>());//reads Look's vector2
+        }
     }
 
     //the following code enables or disables the onFoot action map, useful in situations when you shouldnt be moving
     //such as when looking at photos
-    private void OnFootEnable()
+    public void OnFootEnable()
     {
         onFoot.Enable();
     }
 
-    private void OnFootDisable()
+    public void OnFootDisable()
     {
         onFoot.Disable();
     }

@@ -54,6 +54,9 @@ public class PickUpController : MonoBehaviour
         coll.isTrigger = true;
 
         //enable other script here
+
+        //should turn invisible in photos
+        gameObject.tag = "Player";
     }
 
     private void Drop()
@@ -71,7 +74,11 @@ public class PickUpController : MonoBehaviour
         //disable other script here
 
         //add force: vector, mode
+        rb.linearVelocity = player.GetComponent<CharacterController>().velocity;
         rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
         rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
+
+        //should turn visible in photos
+        gameObject.tag = "Photoable";
     }
 }

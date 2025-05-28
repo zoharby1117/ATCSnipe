@@ -15,7 +15,7 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z); //I want y to be a fixed value of 1.07573
     }
 
     //receive the inputs from input manager, apply to character controller
