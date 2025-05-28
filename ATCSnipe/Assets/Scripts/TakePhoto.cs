@@ -15,19 +15,26 @@ public class TakePhoto : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable"); //returns GameObject[]
-                                                                                          //the list of game objects in the photo.
 
             //Each photo is represented as a list of transforms. (I may change this later.)
-            photoAlbum.Add(new ObjInfo[objectsInPhoto.Length]); //a new list of ObjInfo, aka a new photo, equal in length to the number of objects.
+            photoAlbum.Add(generateArray()); //a new list of ObjInfo, aka a new photo, equal in length to the number of objects.
 
-            for (int i = 0; i < objectsInPhoto.Length; i++)
-            {
-                GameObject go = objectsInPhoto[i];//we dont use get
-                ObjInfo[] photo = photoAlbum[photoAlbum.Count - 1];//the photo we just took
-                ObjInfo info = new ObjInfo(go.transform.position, go.transform.rotation, go.transform.localScale);//deep copy
-                photo[i] = info;
-            }
+
         }
+    }
+
+    public static ObjInfo[] generateArray()//generates an array that represents a state in space, or the photo
+    {
+        GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable"); //returns GameObject[]
+                                                                                      //the list of game objects in the photo.
+        ObjInfo[] photo = new ObjInfo[objectsInPhoto.Length];
+        for (int i = 0; i < objectsInPhoto.Length; i++)
+        {
+            GameObject go = objectsInPhoto[i];//we dont use get
+            //ObjInfo[] photo = photoAlbum[photoAlbum.Count - 1];//the photo we just took
+            ObjInfo info = new ObjInfo(go.transform.position, go.transform.rotation, go.transform.localScale);//deep copy
+            photo[i] = info;
+        }
+        return photo;
     }
 }

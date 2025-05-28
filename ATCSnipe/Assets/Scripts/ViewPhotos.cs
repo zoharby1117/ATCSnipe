@@ -14,11 +14,14 @@ public class ViewPhoto : MonoBehaviour
     private bool viewing;//uses bool not boolean apparently
 
     private float temp;
+
+    private ObjInfo[] tempPositions;
     void Start()
     {
         i = 0;//starts at first photo
         viewing = false;
         temp = player.GetComponent<CharacterController>().minMoveDistance;
+        tempPositions = TakePhoto.generateArray();
     }
 
     // Update is called once per frame
@@ -31,16 +34,31 @@ public class ViewPhoto : MonoBehaviour
             viewing = !viewing; //basically flips from true to false and vice versa.
             if (viewing)
             {
+                tempPositions = TakePhoto.generateArray();
                 viewPhoto();
             }
             else
             {
+                //the following is copied code from viewphoto that is slightly modified.
+                //if I have time later I will modify viewphoto so I dont have to copy code.
+                GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable");
+                //< ObjInfo[] > album = TakePhoto.photoAlbum;
+                ObjInfo[] photo = tempPositions;
+                for (int i = 0; i < objectsInPhoto.Length; i++)
+                {
+                    GameObject go = objectsInPhoto[i];//the object
+                    ObjInfo info = photo[i];//its respective transform from the photo we took
+
+                    go.transform.position = info.position;
+                    go.transform.rotation = info.rotation;
+                    go.transform.localScale = info.scale;
+                }
+
+                //end of copied code
                 player.GetComponent<CharacterController>().minMoveDistance = temp;
             }
+
         }
-
-
-
         if (viewing)
         {
 
@@ -57,8 +75,9 @@ public class ViewPhoto : MonoBehaviour
                 viewPhoto();
             }
         }
-        //I need code that stores info from before the viewing photos otherwise we get locked here forever.
     }
+
+
 
     public void viewPhoto()
     {
@@ -79,6 +98,7 @@ public class ViewPhoto : MonoBehaviour
         }
 
     }
-
 }
+
+
 
