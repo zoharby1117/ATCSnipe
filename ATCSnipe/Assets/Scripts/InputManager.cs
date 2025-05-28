@@ -34,12 +34,12 @@ public class InputManager : MonoBehaviour
 
     //the following code enables or disables the onFoot action map, useful in situations when you shouldnt be moving
     //such as when looking at photos
-    private void OnFootEnable()
+    public void OnFootEnable()
     {
         onFoot.Enable();
     }
 
-    private void OnFootDisable()
+    public void OnFootDisable()
     {
         onFoot.Disable();
     }
