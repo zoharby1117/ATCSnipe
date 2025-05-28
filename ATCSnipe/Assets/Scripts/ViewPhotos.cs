@@ -12,10 +12,13 @@ public class ViewPhoto : MonoBehaviour
     public Transform player;
 
     private bool viewing;//uses bool not boolean apparently
+
+    private float temp;
     void Start()
     {
-        i = 0;
+        i = 0;//starts at first photo
         viewing = false;
+        temp = player.GetComponent<CharacterController>().minMoveDistance;
     }
 
     // Update is called once per frame
@@ -29,6 +32,10 @@ public class ViewPhoto : MonoBehaviour
             if (viewing)
             {
                 viewPhoto();
+            }
+            else
+            {
+                player.GetComponent<CharacterController>().minMoveDistance = temp;
             }
         }
 
