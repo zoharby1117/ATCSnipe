@@ -447,6 +447,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 278121470}
   m_SourcePrefab: {fileID: 100100000, guid: 47eccfdaaa8490246bb90d54bab6ccbd, type: 3}
+<<<<<<< HEAD
 --- !u!1001 &519879872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -691,6 +692,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 265d3fae5db4d4004a3606bf89fada90, type: 3}
+=======
+>>>>>>> parent of d2d4569 (added more items)
 --- !u!1 &829632351
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,6 +909,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1001 &1061935249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1134,6 +1138,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2297525bfefa472bae93a52a9553ed2, type: 3}
+=======
+>>>>>>> parent of d2d4569 (added more items)
 --- !u!20 &1274859481 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6135643627830704981, guid: 3880e32b1ebeb844da1443043a036541, type: 3}
@@ -1555,6 +1561,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3124811904188994114, guid: 3880e32b1ebeb844da1443043a036541, type: 3}
   m_PrefabInstance: {fileID: 8606452013952486940}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &1958999233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,6 +1655,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of d2d4569 (added more items)
 --- !u!1 &2100715289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,6 +1894,7 @@ SceneRoots:
   - {fileID: 1474831803}
   - {fileID: 509388540}
   - {fileID: 829632352}
+<<<<<<< HEAD
   - {fileID: 1958999236}
   - {fileID: 773997484}
   - {fileID: 647336978}
@@ -1897,3 +1907,5 @@ SceneRoots:
   - {fileID: 1189467059}
   - {fileID: 1146892191}
   - {fileID: 1604019626}
+=======
+>>>>>>> parent of d2d4569 (added more items)
