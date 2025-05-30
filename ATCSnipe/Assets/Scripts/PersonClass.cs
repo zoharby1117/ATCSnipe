@@ -29,6 +29,8 @@ public class PersonClass : MonoBehaviour
         float ScaleFactor = person.height / currentHeight;
         transform.localScale = new Vector3(ScaleFactor, ScaleFactor, ScaleFactor);
 
+        //special behaviors will be something like if sprite == special sprite name, do something special like change sprite again, move, etc.
+
     }
 
 
@@ -56,7 +58,7 @@ public class PersonClass : MonoBehaviour
             person = new Person(basilSprites, basilSprites[0].rect.height);//sprite height somewhere
         }
 
-        GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];//first sprite in the folder
+        GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];//first sprite in the folder. call it 0default or smth
 
 
 
@@ -70,11 +72,23 @@ public class PersonClass : MonoBehaviour
         {
             Vector3 distanceToObject = transform.position - thrown.GetComponent<Transform>().position;//these are two transforms
             float valueDistance = distanceToObject.magnitude;//float value for vector magnitude
-            if (valueDistance <= 10 && thrownObjects.Contains(thrown) && thrownObjects.IndexOf(thrown) < person.PersonSprites.Length)//range of 10
+            //if (valueDistance <= 10 && thrownObjects.Contains(thrown) && thrownObjects.IndexOf(thrown) < person.PersonSprites.Length)//range of 10
+            if (valueDistance <= 10 && thrownObjects.Contains(thrown))
             {
-                int i = thrownObjects.IndexOf(thrown);
-                changeSprite(person.PersonSprites[i]);
-                //change sprite to the one whose folder position corresponds to the position of the object in the list
+                //int i = thrownObjects.IndexOf(thrown);
+                //changeSprite(person.PersonSprites[i]);
+                //change sprite to the one whose folder position corresponds to the position of the object in the list.
+                //the folder sprites are stored alphabetically so we need to rename them to match each one with the object.
+
+                //scrapped code above. I think this will be more convenient.
+                foreach (Sprite s in person.PersonSprites)
+                {
+                    if (s.name.Equals(thrown.name))
+                    {
+                        changeSprite(s);
+                        return;
+                    }
+                }
             }
         }
     }
