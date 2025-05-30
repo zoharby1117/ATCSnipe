@@ -14,6 +14,8 @@ public class PickUpController : MonoBehaviour
     public bool equipped;//checks if this specific object is equipped
     public static bool slotFull;//checks if the player is holding anything, same bool for all objects
 
+    public static GameObject thrown = null;
+
     private void Start()
     {
         //disable script
@@ -80,5 +82,8 @@ public class PickUpController : MonoBehaviour
 
         //should turn visible in photos
         gameObject.tag = "Photoable";
+
+        //new thrown object
+        thrown = gameObject;//self
     }
 }
