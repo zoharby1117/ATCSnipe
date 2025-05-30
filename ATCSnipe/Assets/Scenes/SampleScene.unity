@@ -868,6 +868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dumpster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3215525540888094076, guid: c2297525bfefa472bae93a52a9553ed2, type: 3}
+      propertyPath: m_TagString
+      value: Photoable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -924,6 +928,10 @@ PrefabInstance:
     - target: {fileID: 7614955451234883000, guid: 265d3fae5db4d4004a3606bf89fada90, type: 3}
       propertyPath: m_Name
       value: infrastructure-building-basketball-court
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614955451234883000, guid: 265d3fae5db4d4004a3606bf89fada90, type: 3}
+      propertyPath: m_TagString
+      value: Photoable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1129,6 +1137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laptop_black_off
       objectReference: {fileID: 0}
+    - target: {fileID: 180320, guid: 1e96745f2b6e038469341687cbb28188, type: 3}
+      propertyPath: m_TagString
+      value: Photoable
+      objectReference: {fileID: 0}
     - target: {fileID: 440394, guid: 1e96745f2b6e038469341687cbb28188, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.942655
@@ -1196,6 +1208,7 @@ GameObject:
   - component: {fileID: 950037248}
   - component: {fileID: 950037247}
   - component: {fileID: 950037246}
+  - component: {fileID: 950037251}
   m_Layer: 0
   m_Name: TurkeyFlag
   m_TagString: Photoable
@@ -1343,6 +1356,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &950037251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950037245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c46efe3e4c06b4292909f7555cd112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1367738984}
 --- !u!1 &1015471942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,6 +1699,10 @@ PrefabInstance:
     - target: {fileID: 3215525540888094076, guid: c2297525bfefa472bae93a52a9553ed2, type: 3}
       propertyPath: m_Name
       value: dumpster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215525540888094076, guid: c2297525bfefa472bae93a52a9553ed2, type: 3}
+      propertyPath: m_TagString
+      value: Photoable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2183,7 +2213,7 @@ GameObject:
   - component: {fileID: 1958999234}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Photoable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2351,7 +2381,7 @@ MonoBehaviour:
   player: {fileID: 1367738984}
   container: {fileID: 1645334353}
   cam: {fileID: 1689996867}
-  transform: {fileID: 1645334353}
+  transform: {fileID: 2084733526}
   pickUpRange: 2
   dropForwardForce: 5
   dropUpwardForce: 3
@@ -2404,6 +2434,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3, y: 0.6, z: 0.3}
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!4 &2084733526 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8228655922814908579, guid: a961449e439dd954a8e31e4e32ab968d, type: 3}
+  m_PrefabInstance: {fileID: 2084733521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2100715289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,7 +2685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5750127990419705018, guid: 3880e32b1ebeb844da1443043a036541, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.99
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 5750127990419705018, guid: 3880e32b1ebeb844da1443043a036541, type: 3}
       propertyPath: m_LocalPosition.z
