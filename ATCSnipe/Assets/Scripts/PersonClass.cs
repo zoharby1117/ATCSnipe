@@ -68,7 +68,7 @@ public class PersonClass : MonoBehaviour
     {
         //responsible for sprite changes
         GameObject thrown = PickUpController.thrown;
-        if (thrown != null)
+        if (thrown != null && !ViewPhotos.viewing)
         {
             Vector3 distanceToObject = transform.position - thrown.GetComponent<Transform>().position;//these are two transforms
             float valueDistance = distanceToObject.magnitude;//float value for vector magnitude
@@ -83,7 +83,7 @@ public class PersonClass : MonoBehaviour
                 //scrapped code above. I think this will be more convenient.
                 foreach (Sprite s in person.PersonSprites)
                 {
-                    if (s.name.Equals(thrown.name))
+                    if (s.name.Equals(thrown.name))//finds the sprite of the same name as the gameObject
                     {
                         changeSprite(s);
                         return;
