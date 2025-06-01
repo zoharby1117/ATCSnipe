@@ -14,6 +14,8 @@ public class ViewPhotos : MonoBehaviour
 
     public static bool viewing;//uses bool not boolean apparently
 
+    public bool activated = true;
+
     private float temp;
 
     private ObjInfo[] tempPositions;
@@ -73,12 +75,18 @@ public class ViewPhotos : MonoBehaviour
                 //end of copied code
                 //player.GetComponent<CharacterController>().minMoveDistance = temp;
                 Time.timeScale = 1;
+                TextChanger.instance.enableTaking();
+                activated = true;
             }
 
         }
         if (viewing && album.Count > 1)
         {
-
+            
+            if (activated) {
+            TextChanger.instance.CurrentPhotoNum(i+1);
+        }
+            TextChanger.instance.disableTaking();
             //player.GetComponent<CharacterController>().minMoveDistance = 999;
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -87,11 +95,15 @@ public class ViewPhotos : MonoBehaviour
                 {
                     i++;
                     viewPhoto();
+                    TextChanger.instance.CurrentPhotoNum(i+1);
+                    activated = false;
                 }
                 else
                 {
                     i = 0;
                     viewPhoto();
+                    TextChanger.instance.CurrentPhotoNum(i+1);
+                    activated = false;
                 }
 
 
@@ -102,11 +114,15 @@ public class ViewPhotos : MonoBehaviour
                 {
                     i--;
                     viewPhoto();
+                    TextChanger.instance.CurrentPhotoNum(i+1);
+                    activated = false;
                 }
                 else
                 {
                     i = album.Count - 1;
                     viewPhoto();
+                    TextChanger.instance.CurrentPhotoNum(i+1);
+                    activated = false;
                 }
 
             }

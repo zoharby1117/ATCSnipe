@@ -18,6 +18,7 @@ public class TakePhoto : MonoBehaviour
         {
 
             //Each photo is represented as a list of transforms. (I may change this later.)
+            TextChanger.instance.AddPhoto();
             photoAlbum.Add(generateArray()); //a new list of ObjInfo, aka a new photo, equal in length to the number of objects.
 
 
