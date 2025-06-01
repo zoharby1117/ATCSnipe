@@ -96,14 +96,27 @@ public class PickUpController : MonoBehaviour
         rb.isKinematic = false;
         coll.isTrigger = false;
 
+        //transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.SetParent(null);
 
         container.localScale = Vector3.one;
         //disable other script here
 
+        //new thrown object
+        thrown = gameObject;//self
+
+
+
         //add force: vector, mode
         rb.linearVelocity = player.GetComponent<CharacterController>().velocity;
-        rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
+        if (GetComponent<FacePlayer>() != null)//if there is a faceplayer (in the 2d objects like the flag)
+        {
+            rb.AddForce(cam.forward * -1.0f * dropForwardForce, ForceMode.Impulse);//It has to go backwards because it is facing the player
+        }
+        else
+        {
+            rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
+        }
         rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
 
         //should turn visible in photos
@@ -111,7 +124,12 @@ public class PickUpController : MonoBehaviour
 
         // extra.tag = "Untagged";
 
-        //new thrown object
-        thrown = gameObject;//self
+
+        Invoke("resetThrown", 2.9f);
+    }
+
+    private void resetThrown()
+    {
+        thrown = null;
     }
 }

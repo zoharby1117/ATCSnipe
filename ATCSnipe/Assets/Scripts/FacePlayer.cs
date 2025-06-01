@@ -13,7 +13,7 @@ public class FacePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!ViewPhotos.viewing)//we dont want this to move in the photo viewer
+        if (!ViewPhotos.viewing)//we dont want this to move in the photo viewer or if it is the thrown object
         {
             //It was moving around for some reason so I had to lock its position
             //Vector3 temp = transform.position; this doesnt work because it is a shallow copy
