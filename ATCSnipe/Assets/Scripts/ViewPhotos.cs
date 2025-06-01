@@ -12,6 +12,7 @@ public class ViewPhotos : MonoBehaviour
     public Transform player;
 
     public static bool viewing;//uses bool not boolean apparently
+
     public bool activated = true;
     private float temp;
 
@@ -75,6 +76,7 @@ public class ViewPhotos : MonoBehaviour
         }
         if (viewing && album.Count > 1)
         {
+
             TakenTextChanger.instance.disableTaking();
             if (activated)
             {
