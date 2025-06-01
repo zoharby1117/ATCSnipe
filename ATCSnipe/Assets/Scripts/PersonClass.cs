@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;//lets us use AssetDatabase to upload specific sprites
 using System.Collections.Generic;//lets us use lists
 
 public class PersonClass : MonoBehaviour
@@ -23,14 +24,27 @@ public class PersonClass : MonoBehaviour
     //make a change sprite method that changes sprite, resizes, and adds and special behaviors
     public void changeSprite(Sprite newSprite)
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
-        float currentHeight = GetComponent<SpriteRenderer>().sprite.rect.height;
+        if (!ViewPhotos.viewing)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
+            float currentHeight = GetComponent<SpriteRenderer>().sprite.rect.height;
 
-        float ScaleFactor = person.height / currentHeight;
-        transform.localScale = new Vector3(ScaleFactor, ScaleFactor, ScaleFactor);
+            float ScaleFactor = person.height / currentHeight;
+            transform.localScale = new Vector3(ScaleFactor, ScaleFactor, ScaleFactor);
 
-        //special behaviors will be something like if sprite == special sprite name, do something special like change sprite again, move, etc.
+            //special behaviors will be something like if sprite == special sprite name, do something special like change sprite again, move, etc.
+            if (GetComponent<SpriteRenderer>().sprite.name.Equals("Herb_GreenPot") && gameObject.name.Equals("Sam_Basil"))
+            {
+                Invoke("changeToBasil", 3.0f);
+                //Invoke(changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png"), typeof(Sprite)), 3.0f);
+                //Invoke delays the calling of the method
+            }
+        }
+    }
 
+    public void changeToBasil()//honestly this isnt the best coding practice
+    {
+        changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png", typeof(Sprite)));
     }
 
 
