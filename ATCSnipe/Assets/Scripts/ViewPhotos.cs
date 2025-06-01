@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 using System.Collections.Generic;//lets us use lists
 
 
@@ -48,14 +49,19 @@ public class ViewPhotos : MonoBehaviour
                 GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable");
                 //< ObjInfo[] > album = TakePhoto.photoAlbum;
                 ObjInfo[] photo = tempPositions;
-                for (int i = 0; i < objectsInPhoto.Length; i++)
+                for (int j = 0; j < objectsInPhoto.Length; j++)
                 {
-                    GameObject go = objectsInPhoto[i];//the object
-                    ObjInfo info = photo[i];//its respective transform from the photo we took
+                    GameObject go = objectsInPhoto[j];//the object
+                    ObjInfo info = photo[j];//its respective transform from the photo we took
 
                     go.transform.position = info.position;
                     go.transform.rotation = info.rotation;
                     go.transform.localScale = info.scale;
+
+                    if (info.spr != null && go.GetComponent<SpriteRenderer>() != null)
+                    { //if applicable
+                        go.GetComponent<SpriteRenderer>().sprite = (Sprite)AssetDatabase.LoadAssetAtPath(info.spr, typeof(Sprite));//the string path
+                    }
                 }
                 GameObject[] makeInvisible = GameObject.FindGameObjectsWithTag("Player");
                 foreach (GameObject go in makeInvisible)
@@ -129,9 +135,9 @@ public class ViewPhotos : MonoBehaviour
     public void viewPhoto()
     {
         GameObject[] makeInvisible = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject go in makeInvisible)
+        foreach (GameObject go in makeInvisible)//a list that should contain the player object and the held object
         {
-            Renderer r = go.GetComponent<Renderer>();
+            Renderer r = go.GetComponent<Renderer>();//works on both mesh (3d) and sprite (2d) renderers
             if (r != null)
             {
                 r.enabled = false;
@@ -141,14 +147,24 @@ public class ViewPhotos : MonoBehaviour
         GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable");
         List<ObjInfo[]> album = TakePhoto.photoAlbum;
         ObjInfo[] photo = album[i];
-        for (int i = 0; i < objectsInPhoto.Length; i++)
+        Debug.Log(objectsInPhoto.Length);
+        Debug.Log(photo.Length);
+        for (int j = 0; j < photo.Length; j++)
         {
-            GameObject go = objectsInPhoto[i];//the object
-            ObjInfo info = photo[i];//its respective transform from the photo we took
+            GameObject go = objectsInPhoto[j];//the object
+            ObjInfo info = photo[j];//its respective transform from the photo we took
 
             go.transform.position = info.position;
             go.transform.rotation = info.rotation;
             go.transform.localScale = info.scale;
+
+            //now, the sprite. I don't believe we need to use the special changeSprite method in PersonClass because we already have localscale stored.
+            if (info.spr != null && go.GetComponent<SpriteRenderer>() != null)
+            { //if applicable
+                Debug.Log(info.spr);
+                go.GetComponent<SpriteRenderer>().sprite = (Sprite)AssetDatabase.LoadAssetAtPath(info.spr, typeof(Sprite));//the string path
+                Debug.Log((Sprite)AssetDatabase.LoadAssetAtPath(info.spr, typeof(Sprite)));
+            }
 
 
         }
