@@ -58,7 +58,13 @@ public class PersonClass : MonoBehaviour
             person = new Person(basilSprites, basilSprites[0].rect.height);//sprite height somewhere
         }
 
-        GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];//first sprite in the folder. call it 0default or smth
+        if (gameObject.name.Equals("Dharma"))
+        {
+            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Dharma");
+            person = new Person(Sprites, Sprites[0].rect.height * 0.05f);
+        }
+
+        GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
 
 
 
