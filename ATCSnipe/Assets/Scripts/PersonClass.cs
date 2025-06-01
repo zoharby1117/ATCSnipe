@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEditor;//lets us use AssetDatabase to upload specific sprites
+//using UnityEditor;//lets us use AssetDatabase to upload specific sprites
 using System.Collections.Generic;//lets us use lists
 
 public class PersonClass : MonoBehaviour
@@ -44,7 +44,8 @@ public class PersonClass : MonoBehaviour
 
     public void changeToBasil()//honestly this isnt the best coding practice
     {
-        changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png", typeof(Sprite)));
+        //changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png", typeof(Sprite)));
+        changeSprite(Resources.Load<Sprite>("ATCS Sprites/Basil/Herb2"));
     }
 
 
