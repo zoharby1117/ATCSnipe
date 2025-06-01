@@ -12,7 +12,7 @@ public class ViewPhotos : MonoBehaviour
     public Transform player;
 
     public static bool viewing;//uses bool not boolean apparently
-
+    public bool activated = true;
     private float temp;
 
     private ObjInfo[] tempPositions;
@@ -36,6 +36,8 @@ public class ViewPhotos : MonoBehaviour
             {
                 tempPositions = TakePhoto.generateArray();
                 Time.timeScale = 0;//freeze physics
+                
+                
                 viewPhoto();
             }
             else
@@ -67,12 +69,17 @@ public class ViewPhotos : MonoBehaviour
                 //end of copied code
                 //player.GetComponent<CharacterController>().minMoveDistance = temp;
                 Time.timeScale = 1;
+                TakenTextChanger.instance.enableTaking();
             }
 
         }
         if (viewing && album.Count > 1)
         {
-
+            TakenTextChanger.instance.disableTaking();
+            if (activated)
+            {
+                TakenTextChanger.instance.CurrentPhotoNum(0);
+            }
             //player.GetComponent<CharacterController>().minMoveDistance = 999;
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -81,11 +88,15 @@ public class ViewPhotos : MonoBehaviour
                 {
                     i++;
                     viewPhoto();
+                    TakenTextChanger.instance.CurrentPhotoNum(i);
+                    activated = false;
                 }
                 else
                 {
                     i = 0;
                     viewPhoto();
+                    TakenTextChanger.instance.CurrentPhotoNum(i);
+                    activated = false;
                 }
 
 
@@ -96,11 +107,15 @@ public class ViewPhotos : MonoBehaviour
                 {
                     i--;
                     viewPhoto();
+                    TakenTextChanger.instance.CurrentPhotoNum(i);
+                    activated = false;
                 }
                 else
                 {
                     i = album.Count - 1;
                     viewPhoto();
+                    TakenTextChanger.instance.CurrentPhotoNum(i);
+                    activated = false;
                 }
 
             }
