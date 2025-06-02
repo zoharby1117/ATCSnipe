@@ -39,6 +39,23 @@ public class PersonClass : MonoBehaviour
                 //Invoke(changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png"), typeof(Sprite)), 3.0f);
                 //Invoke delays the calling of the method
             }
+            if (GetComponent<SpriteRenderer>().sprite.name.Equals("Laptop") && gameObject.name.Equals("Ryan"))
+            {
+                Invoke("changeToRyanLaptop", 3.0f);
+                //Invoke(changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png"), typeof(Sprite)), 3.0f);
+                //Invoke delays the calling of the method
+            }
+            
+            if (GetComponent<SpriteRenderer>().sprite.name.Equals("Phone") && gameObject.name.Equals("Tommy"))
+            {
+                Invoke("changeToTommyPhone", 3.0f);
+            }
+            
+            if (GetComponent<SpriteRenderer>().sprite.name.Equals("Chair") && gameObject.name.Equals("Tommy"))
+            {
+                Invoke("changeToTommyChair", 3.0f);
+
+            }
         }
     }
 
@@ -46,6 +63,20 @@ public class PersonClass : MonoBehaviour
     {
         //changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png", typeof(Sprite)));
         changeSprite(Resources.Load<Sprite>("ATCS Sprites/Basil/Herb2"));
+    }
+
+    public void changeToRyanLaptop()
+    {
+        changeSprite(Resources.Load<Sprite>("ATCS Sprites/Ryan/Laptop2"));
+    }
+
+    public void changeToTommyChair()
+    {
+        changeSprite(Resources.Load<Sprite>("ATCS Sprites/Tommy/Chair2"));
+    }
+    public void changeToTommyPhone()
+    {
+        changeSprite(Resources.Load<Sprite>("ATCS Sprites/Tommy/Phone2"));
     }
 
 
@@ -69,6 +100,8 @@ public class PersonClass : MonoBehaviour
             thrownObjects.Add(GameObject.Find("Rickroll"));
             thrownObjects.Add(GameObject.Find("Tea"));
             thrownObjects.Add(GameObject.Find("Cat"));
+            thrownObjects.Add(GameObject.Find("Chair"));
+
 
 
         }
@@ -87,7 +120,16 @@ public class PersonClass : MonoBehaviour
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Dharma");
             person = new Person(Sprites, Sprites[0].rect.height * 0.05f);
         }
-
+        if (gameObject.name.Equals("Ryan"))
+        {
+            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Ryan");
+            person = new Person(Sprites, Sprites[0].rect.height * 0.03293264f);
+        }
+        if (gameObject.name.Equals("Tommy"))
+        {
+            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Tommy");
+            person = new Person(Sprites, Sprites[0].rect.height * 0.04f);
+        }
         GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
 
 
