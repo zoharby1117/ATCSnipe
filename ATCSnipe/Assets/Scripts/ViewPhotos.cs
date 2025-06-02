@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;//lets us use lists
 
 
@@ -59,7 +58,7 @@ public class ViewPhotos : MonoBehaviour
 
                     if (info.spr != null && go.GetComponent<SpriteRenderer>() != null)
                     { //if applicable
-                        go.GetComponent<SpriteRenderer>().sprite = (Sprite)AssetDatabase.LoadAssetAtPath(info.spr, typeof(Sprite));//the string path
+                        go.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load<Sprite>(info.spr);//the string path
                     }
                 }
                 GameObject[] makeInvisible = GameObject.FindGameObjectsWithTag("Player");
@@ -161,8 +160,7 @@ public class ViewPhotos : MonoBehaviour
             if (info.spr != null && go.GetComponent<SpriteRenderer>() != null)
             { //if applicable
                 Debug.Log(info.spr);
-                go.GetComponent<SpriteRenderer>().sprite = (Sprite)AssetDatabase.LoadAssetAtPath(info.spr, typeof(Sprite));//the string path
-                Debug.Log((Sprite)AssetDatabase.LoadAssetAtPath(info.spr, typeof(Sprite)));
+                go.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load<Sprite>(info.spr);//the string path
             }
 
 
