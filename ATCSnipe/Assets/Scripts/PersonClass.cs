@@ -13,6 +13,8 @@ public class PersonClass : MonoBehaviour
         public Sprite[] PersonSprites;
         //Sprite[0] by default
 
+        public string name;//used for folder pathfinding
+
         public Person(Sprite[] sprites, float height)
         {
             PersonSprites = sprites;
@@ -45,12 +47,12 @@ public class PersonClass : MonoBehaviour
                 //Invoke(changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png"), typeof(Sprite)), 3.0f);
                 //Invoke delays the calling of the method
             }
-            
+
             if (GetComponent<SpriteRenderer>().sprite.name.Equals("Phone") && gameObject.name.Equals("Tommy"))
             {
                 Invoke("changeToTommyPhone", 3.0f);
             }
-            
+
             if (GetComponent<SpriteRenderer>().sprite.name.Equals("Chair") && gameObject.name.Equals("Tommy"))
             {
                 Invoke("changeToTommyChair", 3.0f);
@@ -101,6 +103,8 @@ public class PersonClass : MonoBehaviour
             thrownObjects.Add(GameObject.Find("Tea"));
             thrownObjects.Add(GameObject.Find("Cat"));
             thrownObjects.Add(GameObject.Find("Chair"));
+            thrownObjects.Add(GameObject.Find("Baseball"));
+            thrownObjects.Add(GameObject.Find("Soccer"));
 
 
 
@@ -128,6 +132,11 @@ public class PersonClass : MonoBehaviour
         if (gameObject.name.Equals("Tommy"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Tommy");
+            person = new Person(Sprites, Sprites[0].rect.height * 0.04f);
+        }
+        if (gameObject.name.Equals("Pranav"))
+        {
+            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Pranav");
             person = new Person(Sprites, Sprites[0].rect.height * 0.04f);
         }
         GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
