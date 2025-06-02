@@ -14,7 +14,7 @@ public class TakePhoto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && !ViewPhotos.viewing)
         {
 
             //Each photo is represented as a list of transforms. (I may change this later.)
