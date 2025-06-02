@@ -60,6 +60,15 @@ public class PersonClass : MonoBehaviour
             thrownObjects.Add(GameObject.Find("Laptop"));
             thrownObjects.Add(GameObject.Find("Phone"));
             thrownObjects.Add(GameObject.Find("TurkeyFlag"));
+            thrownObjects.Add(GameObject.Find("Sigma"));
+            thrownObjects.Add(GameObject.Find("Pig"));
+            thrownObjects.Add(GameObject.Find("Megaman"));
+            thrownObjects.Add(GameObject.Find("Prawn"));
+            thrownObjects.Add(GameObject.Find("Boba"));
+            thrownObjects.Add(GameObject.Find("Kirby"));
+            thrownObjects.Add(GameObject.Find("Rickroll"));
+            thrownObjects.Add(GameObject.Find("Tea"));
+            thrownObjects.Add(GameObject.Find("Cat"));
 
 
         }

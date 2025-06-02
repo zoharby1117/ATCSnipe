@@ -22,6 +22,8 @@ public class PickUpController : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        coll = GetComponent<BoxCollider>();
         //disable script
         rb.isKinematic = false;
         coll.isTrigger = false;
@@ -109,14 +111,7 @@ public class PickUpController : MonoBehaviour
 
         //add force: vector, mode
         rb.linearVelocity = player.GetComponent<CharacterController>().velocity;
-        if (GetComponent<FacePlayer>() != null)//if there is a faceplayer (in the 2d objects like the flag)
-        {
-            rb.AddForce(cam.forward * -1.0f * dropForwardForce, ForceMode.Impulse);//It has to go backwards because it is facing the player
-        }
-        else
-        {
-            rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
-        }
+        rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
         rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
 
         //should turn visible in photos
