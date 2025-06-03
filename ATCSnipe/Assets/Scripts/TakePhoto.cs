@@ -1,13 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;//lets us use lists
+
 public class TakePhoto : MonoBehaviour
 {
-    //define photoalbum instance var
-    public static List<ObjInfo[]> photoAlbum;
+    [SerializeField] private AudioClip clickSound;
+
+    private AudioSource audioSource;
+        //define photoalbum instance var
+        public static List<ObjInfo[]> photoAlbum;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         photoAlbum = new List<ObjInfo[]>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -17,6 +23,8 @@ public class TakePhoto : MonoBehaviour
         {
 
             //Each photo is represented as a list of transforms. (I may change this later.)
+            audioSource.clip = clickSound;
+            audioSource.Play();
             TextChanger.instance.AddPhoto();
             photoAlbum.Add(generateArray()); //a new list of ObjInfo, aka a new photo, equal in length to the number of objects.
 
