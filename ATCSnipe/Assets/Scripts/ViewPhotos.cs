@@ -45,6 +45,8 @@ public class ViewPhotos : MonoBehaviour
                 tempPositions = TakePhoto.generateArray();
                 Time.timeScale = 0;//freeze physics
                 viewPhoto();
+                TextChanger.instance.disableTaking();
+                TextChanger.instance.CurrentPhotoNum(1);
             }
             else
             {
