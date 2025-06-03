@@ -15,10 +15,11 @@ public class PersonClass : MonoBehaviour
 
         public string name;//used for folder pathfinding
 
-        public Person(Sprite[] sprites, float height)
+        public Person(Sprite[] sprites, float height, string name)
         {
             PersonSprites = sprites;
             this.height = height;
+            this.name = name;
         }
 
     }
@@ -82,7 +83,7 @@ public class PersonClass : MonoBehaviour
     }
 
 
-    void Start()
+    void Awake()
     {
         if (thrownObjects == null)
         {
@@ -116,28 +117,28 @@ public class PersonClass : MonoBehaviour
         if (gameObject.name.Equals("Sam_Basil"))
         {
             Sprite[] basilSprites = Resources.LoadAll<Sprite>("ATCS Sprites/Basil");//uploads the folder as an array of sprites. Awesome.
-            person = new Person(basilSprites, basilSprites[0].rect.height);//sprite height somewhere
+            person = new Person(basilSprites, basilSprites[0].rect.height, "Basil");//sprite height somewhere
         }
 
         if (gameObject.name.Equals("Dharma"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Dharma");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.05f);
+            person = new Person(Sprites, Sprites[0].rect.height * 0.05f, "Dharma");
         }
         if (gameObject.name.Equals("Ryan"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Ryan");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.03293264f);
+            person = new Person(Sprites, Sprites[0].rect.height * 0.03293264f, "Ryan");
         }
         if (gameObject.name.Equals("Tommy"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Tommy");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.04f);
+            person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Tommy");
         }
         if (gameObject.name.Equals("Pranav"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Pranav");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.04f);
+            person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Pranav");
         }
         GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
 
