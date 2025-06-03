@@ -5,6 +5,9 @@ using System.Collections.Generic;//lets us use lists
 
 public class ViewPhotos : MonoBehaviour
 {
+    [SerializeField] private AudioClip camLoadingSound;
+
+    private AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //private List<Transform[]> photoAlbum;
     //private GameObject[] objectsInPhoto;
@@ -25,6 +28,7 @@ public class ViewPhotos : MonoBehaviour
         viewing = false;
         //temp = player.GetComponent<CharacterController>().minMoveDistance;
         tempPositions = TakePhoto.generateArray();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,6 +37,8 @@ public class ViewPhotos : MonoBehaviour
         List<ObjInfo[]> album = TakePhoto.photoAlbum;
         if (Input.GetKeyDown(KeyCode.X) && album.Count > 0)
         {
+            audioSource.clip = camLoadingSound;
+            audioSource.Play();
             //viewPhoto();
             viewing = !viewing; //basically flips from true to false and vice versa.
             if (viewing)
@@ -76,6 +82,7 @@ public class ViewPhotos : MonoBehaviour
                 //player.GetComponent<CharacterController>().minMoveDistance = temp;
                 Time.timeScale = 1;
                 TextChanger.instance.enableTaking();
+             
                 activated = true;
             }
 
@@ -84,7 +91,8 @@ public class ViewPhotos : MonoBehaviour
         {
             
             if (activated) {
-            TextChanger.instance.CurrentPhotoNum(i+1);
+                
+                TextChanger.instance.CurrentPhotoNum(i+1);
         }
             TextChanger.instance.disableTaking();
             //player.GetComponent<CharacterController>().minMoveDistance = 999;
