@@ -59,6 +59,11 @@ public class PersonClass : MonoBehaviour
                 Invoke("changeToTommyChair", 3.0f);
 
             }
+            if (GetComponent<SpriteRenderer>().sprite.name.Equals("TurkeyFlag") && gameObject.name.Equals("Serra"))
+            {
+                Invoke("changeToSerraFlag", 3.0f);
+
+            }
         }
     }
 
@@ -80,6 +85,10 @@ public class PersonClass : MonoBehaviour
     public void changeToTommyPhone()
     {
         changeSprite(Resources.Load<Sprite>("ATCS Sprites/Tommy/Phone2"));
+    }
+    public void changeToSerraFlag()
+    {
+        changeSprite(Resources.Load<Sprite>("ATCS Sprites/Serra/TurkeyFlag2"));
     }
 
 
@@ -106,6 +115,7 @@ public class PersonClass : MonoBehaviour
             thrownObjects.Add(GameObject.Find("Chair"));
             thrownObjects.Add(GameObject.Find("Baseball"));
             thrownObjects.Add(GameObject.Find("Soccer"));
+            thrownObjects.Add(GameObject.Find("Weezer"));
 
 
 
@@ -140,6 +150,22 @@ public class PersonClass : MonoBehaviour
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Pranav");
             person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Pranav");
         }
+        if (gameObject.name.Equals("Serra"))
+        {
+            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Serra");
+            person = new Person(Sprites, Sprites[0].rect.height * 0.145487f, "Serra");
+        }
+        if (gameObject.name.Equals("Miguel"))
+        {
+            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Miguel");
+            person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Miguel");
+        }
+        if (gameObject.name.Equals("Nick"))
+        {
+            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Nick");
+            person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Nick");
+        }
+
         GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
 
 

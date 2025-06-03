@@ -111,13 +111,22 @@ public class PickUpController : MonoBehaviour
 
         //add force: vector, mode
         rb.linearVelocity = player.GetComponent<CharacterController>().velocity;
-        rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
-        rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
-
-        //should turn visible in photos
-        //gameObject.tag = "Photoable";
-
-        // extra.tag = "Untagged";
+        if (GetComponent<SpriteRenderer>() == null)
+        {//3d
+            rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
+            rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
+        }
+        else
+        {
+            //2d
+            if (transform.position.y < 0.72f)
+            {//so it doesnt sink into the ground
+                transform.position = new Vector3(transform.position.x, 0.72f, transform.position.z);
+            }
+            rb.linearDamping = 2f;
+            rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);
+            rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
+        }
 
 
         Invoke("resetThrown", 2.9f);
