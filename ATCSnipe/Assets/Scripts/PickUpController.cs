@@ -16,9 +16,7 @@ public class PickUpController : MonoBehaviour
 
     public static GameObject thrown = null;
 
-    //public static GameObject extra;//this is a thing I did for debugging
-    //it basically maintains the length list of photoable items when another is removed
-    //It's completely empty
+    public static Vector3 dir;//to make sure the object is being thrown in the right direction before the reaction happens
 
     private void Start()
     {
@@ -107,6 +105,14 @@ public class PickUpController : MonoBehaviour
         //new thrown object
         thrown = gameObject;//self
 
+        //to set direction
+        //static dir
+        dir = (cam.forward).normalized;
+
+        //dir = Vector3()
+
+        //actually 
+
 
 
         //add force: vector, mode
@@ -135,5 +141,6 @@ public class PickUpController : MonoBehaviour
     private void resetThrown()
     {
         thrown = null;
+        //dir = null;
     }
 }

@@ -5,6 +5,10 @@ using System.Collections.Generic;//lets us use lists
 public class PersonClass : MonoBehaviour
 {
     public static List<GameObject> thrownObjects;
+
+    public static List<GameObject> people;//this is so that each person has a direction
+
+    public Vector3 direction;
     public Person person;
 
     public class Person
@@ -123,54 +127,66 @@ public class PersonClass : MonoBehaviour
 
 
         //instantiating people
+        if (people == null)
+        {
+            people = new List<GameObject>();
 
-        if (gameObject.name.Equals("Sam_Basil"))
-        {
-            Sprite[] basilSprites = Resources.LoadAll<Sprite>("ATCS Sprites/Basil");//uploads the folder as an array of sprites. Awesome.
-            person = new Person(basilSprites, basilSprites[0].rect.height, "Basil");//sprite height somewhere
-        }
+            if (gameObject.name.Equals("Sam_Basil"))
+            {
+                Sprite[] basilSprites = Resources.LoadAll<Sprite>("ATCS Sprites/Basil");//uploads the folder as an array of sprites. Awesome.
+                person = new Person(basilSprites, basilSprites[0].rect.height, "Basil");//sprite height somewhere
+                people.Add(GameObject.Find("Sam_Basil"));
+            }
 
-        if (gameObject.name.Equals("Dharma"))
-        {
-            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Dharma");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.05f, "Dharma");
-        }
-        if (gameObject.name.Equals("Ryan"))
-        {
-            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Ryan");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.03293264f, "Ryan");
-        }
-        if (gameObject.name.Equals("Tommy"))
-        {
-            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Tommy");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Tommy");
-        }
-        if (gameObject.name.Equals("Pranav"))
-        {
-            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Pranav");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Pranav");
-        }
-        if (gameObject.name.Equals("Serra"))
-        {
-            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Serra");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.145487f, "Serra");
-        }
-        if (gameObject.name.Equals("Miguel"))
-        {
-            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Miguel");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Miguel");
-        }
-        if (gameObject.name.Equals("Nick"))
-        {
-            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Nick");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Nick");
-        }
+            if (gameObject.name.Equals("Dharma"))
+            {
+                Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Dharma");
+                person = new Person(Sprites, Sprites[0].rect.height * 0.05f, "Dharma");
+                people.Add(GameObject.Find("Dharma"));
+            }
+            if (gameObject.name.Equals("Ryan"))
+            {
+                Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Ryan");
+                person = new Person(Sprites, Sprites[0].rect.height * 0.03293264f, "Ryan");
+                people.Add(GameObject.Find("Ryan"));
+            }
+            if (gameObject.name.Equals("Tommy"))
+            {
+                Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Tommy");
+                person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Tommy");
+                people.Add(GameObject.Find("Tommy"));
 
-        GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
+            }
+            if (gameObject.name.Equals("Pranav"))
+            {
+                Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Pranav");
+                person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Pranav");
+                people.Add(GameObject.Find("Pranav"));
 
+            }
+            if (gameObject.name.Equals("Serra"))
+            {
+                Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Serra");
+                person = new Person(Sprites, Sprites[0].rect.height * 0.145487f, "Serra");
+                people.Add(GameObject.Find("Serra"));
 
+            }
+            if (gameObject.name.Equals("Miguel"))
+            {
+                Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Miguel");
+                person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Miguel");
+                people.Add(GameObject.Find("Miguel"));
 
+            }
+            if (gameObject.name.Equals("Nick"))
+            {
+                Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Nick");
+                person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Nick");
+                people.Add(GameObject.Find("Nick"));
+            }
 
+            GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
+        }
     }
     void Update()
     {
