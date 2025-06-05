@@ -3,7 +3,12 @@ guid: 09679a6413250694ab0dd5f4a1ce18a0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MILKTEA
+    second: {fileID: 2100000, guid: a7689a322917ac24faf1875a43c51773, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

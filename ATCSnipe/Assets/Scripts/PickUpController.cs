@@ -14,25 +14,52 @@ public class PickUpController : MonoBehaviour
     public bool equipped;//checks if this specific object is equipped
     public static bool slotFull;//checks if the player is holding anything, same bool for all objects
 
+    public static GameObject thrown = null;
+
+    //public static GameObject extra;//this is a thing I did for debugging
+    //it basically maintains the length list of photoable items when another is removed
+    //It's completely empty
+
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        coll = GetComponent<BoxCollider>();
         //disable script
         rb.isKinematic = false;
         coll.isTrigger = false;
 
         container.localScale = Vector3.one;
+        //extra = GameObject.Find("ExtraPhotoable");
+        //extra.tag = "Untagged";
     }
     private void Update()
     {
-        Vector3 distanceToPlayer = player.position - transform.position;//these are two transforms
-        float valueDistance = distanceToPlayer.magnitude;//float value for vector magnitude
-        if (!equipped && valueDistance <= pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if (!ViewPhotos.viewing)
         {
-            PickUp();
+            Vector3 distanceToPlayer = player.position - transform.position;//these are two transforms
+            float valueDistance = distanceToPlayer.magnitude;//float value for vector magnitude
+            if (!equipped && valueDistance <= pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+            {
+                PickUp();
+            }
+            else if (equipped && Input.GetKeyDown(KeyCode.E))
+            {
+                Drop();
+            }
         }
-        else if (equipped && Input.GetKeyDown(KeyCode.E))
+        if (ViewPhotos.viewing)
         {
-            Drop();
+            if (GetComponent<Renderer>() != null && equipped)
+            {
+                GetComponent<Renderer>().enabled = false;
+            }
+        }
+        else
+        {
+            if (GetComponent<Renderer>() != null)
+            {
+                GetComponent<Renderer>().enabled = true;
+            }
         }
     }
 
@@ -56,7 +83,10 @@ public class PickUpController : MonoBehaviour
         //enable other script here
 
         //should turn invisible in photos
-        gameObject.tag = "Player";
+        //gameObject.tag = "Player";
+
+        //maintains length of photoable list to not cause bugs
+        //extra.tag = "Photoable";
     }
 
     private void Drop()
@@ -68,17 +98,42 @@ public class PickUpController : MonoBehaviour
         rb.isKinematic = false;
         coll.isTrigger = false;
 
+        //transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.SetParent(null);
 
         container.localScale = Vector3.one;
         //disable other script here
 
+        //new thrown object
+        thrown = gameObject;//self
+
+
+
         //add force: vector, mode
         rb.linearVelocity = player.GetComponent<CharacterController>().velocity;
-        rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
-        rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
+        if (GetComponent<SpriteRenderer>() == null)
+        {//3d
+            rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);//based on mass
+            rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
+        }
+        else
+        {
+            //2d
+            if (transform.position.y < 0.72f)
+            {//so it doesnt sink into the ground
+                transform.position = new Vector3(transform.position.x, 0.72f, transform.position.z);
+            }
+            rb.linearDamping = 2f;
+            rb.AddForce(cam.forward * dropForwardForce, ForceMode.Impulse);
+            rb.AddForce(cam.up * dropUpwardForce, ForceMode.Impulse);
+        }
 
-        //should turn visible in photos
-        gameObject.tag = "Photoable";
+
+        Invoke("resetThrown", 2.9f);
+    }
+
+    private void resetThrown()
+    {
+        thrown = null;
     }
 }

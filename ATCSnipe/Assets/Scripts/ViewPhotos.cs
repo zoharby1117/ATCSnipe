@@ -4,6 +4,9 @@ using System.Collections.Generic;//lets us use lists
 
 public class ViewPhotos : MonoBehaviour
 {
+    [SerializeField] private AudioClip camLoadingSound;
+
+    private AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //private List<Transform[]> photoAlbum;
     //private GameObject[] objectsInPhoto;
@@ -12,6 +15,8 @@ public class ViewPhotos : MonoBehaviour
     public Transform player;
 
     public static bool viewing;//uses bool not boolean apparently
+
+    public bool activated = true;
 
     private float temp;
 
@@ -22,6 +27,7 @@ public class ViewPhotos : MonoBehaviour
         viewing = false;
         //temp = player.GetComponent<CharacterController>().minMoveDistance;
         tempPositions = TakePhoto.generateArray();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +36,8 @@ public class ViewPhotos : MonoBehaviour
         List<ObjInfo[]> album = TakePhoto.photoAlbum;
         if (Input.GetKeyDown(KeyCode.X) && album.Count > 0)
         {
+            audioSource.clip = camLoadingSound;
+            audioSource.Play();
             //viewPhoto();
             viewing = !viewing; //basically flips from true to false and vice versa.
             if (viewing)
@@ -37,6 +45,8 @@ public class ViewPhotos : MonoBehaviour
                 tempPositions = TakePhoto.generateArray();
                 Time.timeScale = 0;//freeze physics
                 viewPhoto();
+                TextChanger.instance.disableTaking();
+                TextChanger.instance.CurrentPhotoNum(1);
             }
             else
             {
@@ -45,14 +55,19 @@ public class ViewPhotos : MonoBehaviour
                 GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable");
                 //< ObjInfo[] > album = TakePhoto.photoAlbum;
                 ObjInfo[] photo = tempPositions;
-                for (int i = 0; i < objectsInPhoto.Length; i++)
+                for (int j = 0; j < objectsInPhoto.Length; j++)
                 {
-                    GameObject go = objectsInPhoto[i];//the object
-                    ObjInfo info = photo[i];//its respective transform from the photo we took
+                    GameObject go = objectsInPhoto[j];//the object
+                    ObjInfo info = photo[j];//its respective transform from the photo we took
 
                     go.transform.position = info.position;
                     go.transform.rotation = info.rotation;
                     go.transform.localScale = info.scale;
+
+                    if (info.spr != null && go.GetComponent<SpriteRenderer>() != null)
+                    { //if applicable
+                        go.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load<Sprite>(info.spr);//the string path
+                    }
                 }
                 GameObject[] makeInvisible = GameObject.FindGameObjectsWithTag("Player");
                 foreach (GameObject go in makeInvisible)
@@ -67,12 +82,20 @@ public class ViewPhotos : MonoBehaviour
                 //end of copied code
                 //player.GetComponent<CharacterController>().minMoveDistance = temp;
                 Time.timeScale = 1;
+                TextChanger.instance.enableTaking();
+             
+                activated = true;
             }
 
         }
         if (viewing && album.Count > 1)
         {
-
+            
+            if (activated) {
+                
+                TextChanger.instance.CurrentPhotoNum(i+1);
+        }
+            TextChanger.instance.disableTaking();
             //player.GetComponent<CharacterController>().minMoveDistance = 999;
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -81,11 +104,15 @@ public class ViewPhotos : MonoBehaviour
                 {
                     i++;
                     viewPhoto();
+                    TextChanger.instance.CurrentPhotoNum(i+1);
+                    activated = false;
                 }
                 else
                 {
                     i = 0;
                     viewPhoto();
+                    TextChanger.instance.CurrentPhotoNum(i+1);
+                    activated = false;
                 }
 
 
@@ -96,11 +123,15 @@ public class ViewPhotos : MonoBehaviour
                 {
                     i--;
                     viewPhoto();
+                    TextChanger.instance.CurrentPhotoNum(i+1);
+                    activated = false;
                 }
                 else
                 {
                     i = album.Count - 1;
                     viewPhoto();
+                    TextChanger.instance.CurrentPhotoNum(i+1);
+                    activated = false;
                 }
 
             }
@@ -112,9 +143,9 @@ public class ViewPhotos : MonoBehaviour
     public void viewPhoto()
     {
         GameObject[] makeInvisible = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject go in makeInvisible)
+        foreach (GameObject go in makeInvisible)//a list that should contain the player object and the held object
         {
-            Renderer r = go.GetComponent<Renderer>();
+            Renderer r = go.GetComponent<Renderer>();//works on both mesh (3d) and sprite (2d) renderers
             if (r != null)
             {
                 r.enabled = false;
@@ -124,14 +155,23 @@ public class ViewPhotos : MonoBehaviour
         GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable");
         List<ObjInfo[]> album = TakePhoto.photoAlbum;
         ObjInfo[] photo = album[i];
-        for (int i = 0; i < objectsInPhoto.Length; i++)
+        Debug.Log(objectsInPhoto.Length);
+        Debug.Log(photo.Length);
+        for (int j = 0; j < photo.Length; j++)
         {
-            GameObject go = objectsInPhoto[i];//the object
-            ObjInfo info = photo[i];//its respective transform from the photo we took
+            GameObject go = objectsInPhoto[j];//the object
+            ObjInfo info = photo[j];//its respective transform from the photo we took
 
             go.transform.position = info.position;
             go.transform.rotation = info.rotation;
             go.transform.localScale = info.scale;
+
+            //now, the sprite. I don't believe we need to use the special changeSprite method in PersonClass because we already have localscale stored.
+            if (info.spr != null && go.GetComponent<SpriteRenderer>() != null)
+            { //if applicable
+                Debug.Log(info.spr);
+                go.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load<Sprite>(info.spr);//the string path
+            }
 
 
         }
