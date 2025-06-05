@@ -120,6 +120,7 @@ public class PersonClass : MonoBehaviour
             thrownObjects.Add(GameObject.Find("Baseball"));
             thrownObjects.Add(GameObject.Find("Soccer"));
             thrownObjects.Add(GameObject.Find("Weezer"));
+            thrownObjects.Add(GameObject.Find("Nerd"));
 
 
 
@@ -185,11 +186,25 @@ public class PersonClass : MonoBehaviour
             people.Add(GameObject.Find("Nick"));
         }
 
+        if (gameObject.name.Equals("Zohar"))
+        {
+            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Zohar");
+            person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Zohar");
+            people.Add(GameObject.Find("Zohar"));
+        }
+
         GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
         //}
     }
     void Update()
     {
+        //log
+        if (GetComponent<Renderer>().isVisible)
+        {
+            Debug.Log(person.name);
+        }
+
+
         //responsible for sprite changes
         GameObject thrown = PickUpController.thrown;
 
