@@ -16,8 +16,6 @@ public class PickUpController : MonoBehaviour
 
     public static GameObject thrown = null;
 
-    public static Vector3 dir;//to make sure the object is being thrown in the right direction before the reaction happens
-    public static float Yrot;
 
     private void Start()
     {
@@ -106,18 +104,7 @@ public class PickUpController : MonoBehaviour
         //new thrown object
         thrown = gameObject;//self
 
-        //to set direction
-        //static dir
-        dir = (cam.forward).normalized;
-        Yrot = dir.y;
-        foreach (GameObject go in PersonClass.people)
-        {
-            Vector3 d = (go.transform.position - thrown.transform.position).normalized;
-            go.GetComponent<PersonClass>().setDirection(d);
-        }
-
-
-
+    
         //add force: vector, mode
         rb.linearVelocity = player.GetComponent<CharacterController>().velocity;
         if (GetComponent<SpriteRenderer>() == null)
@@ -144,6 +131,5 @@ public class PickUpController : MonoBehaviour
     private void resetThrown()
     {
         thrown = null;
-        //Yrot = null;
     }
 }

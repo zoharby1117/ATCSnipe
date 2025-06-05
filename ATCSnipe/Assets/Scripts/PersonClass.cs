@@ -8,7 +8,6 @@ public class PersonClass : MonoBehaviour
 
     public static List<GameObject> people;//this is so that each person has a direction
 
-    public Vector3 direction;
     public Person person;
 
 
@@ -27,10 +26,6 @@ public class PersonClass : MonoBehaviour
             this.name = name;
         }
 
-    }
-    public void setDirection(Vector3 v)
-    {
-        direction = v;
     }
 
     //make a change sprite method that changes sprite, resizes, and adds and special behaviors
@@ -198,20 +193,14 @@ public class PersonClass : MonoBehaviour
         //responsible for sprite changes
         GameObject thrown = PickUpController.thrown;
 
-        if (thrown != null && !ViewPhotos.viewing)
+        if (thrown != null && !ViewPhotos.viewing && GetComponent<Renderer>().isVisible)
         {
-            float directionDifference = 0;
-            directionDifference = Mathf.Abs((direction.y * -1) - PickUpController.Yrot);
-            
-
-            Debug.Log("Dir" + direction.y+ "Yrot" + PickUpController.Yrot+"dif" + directionDifference + person.name);
-            
 
 
             Vector3 distanceToObject = transform.position - thrown.GetComponent<Transform>().position;//these are two transforms
             float valueDistance = distanceToObject.magnitude;//float value for vector magnitude
                                                              //if (valueDistance <= 10 && thrownObjects.Contains(thrown) && thrownObjects.IndexOf(thrown) < person.PersonSprites.Length)//range of 10
-            if (valueDistance <= 10 && thrownObjects.Contains(thrown))
+            if (valueDistance <= 7 && thrownObjects.Contains(thrown))
             {
                 foreach (Sprite s in person.PersonSprites)
                 {
