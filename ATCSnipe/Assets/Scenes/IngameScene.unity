@@ -2175,6 +2175,7 @@ GameObject:
   - component: {fileID: 829632352}
   - component: {fileID: 829632353}
   - component: {fileID: 829632354}
+  - component: {fileID: 829632356}
   - component: {fileID: 829632355}
   m_Layer: 0
   m_Name: TakePhotos
@@ -2323,6 +2324,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &829632356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829632351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2597df0f5fa3af4a9822c70cab25619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
