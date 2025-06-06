@@ -3,9 +3,14 @@ using System.IO;//lets us use path
 
 public class Ending : MonoBehaviour
 {
+    public static bool timerOver;
     public void EndTimer()
     {
-
+        timerOver = true;
+        ViewPhotos vp = GetComponent<ViewPhotos>();
+        vp.i = 0;
+        vp.playLoadSound();
+        vp.startView();
     }
 
     private void Screenshot()
@@ -42,13 +47,23 @@ public class Ending : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        timerOver = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-            
+        if (timerOver)
+        {
+            //UI: Press Z to save a photo
+            //when that key is pressed:
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                //hide all UI
+                //screenshot, maybe play a sound
+                Screenshot();
+                //show all UI, display a saved! message
+            }
+        }            
     }
 }

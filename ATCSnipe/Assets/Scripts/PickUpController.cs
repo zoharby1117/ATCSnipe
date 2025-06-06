@@ -16,6 +16,9 @@ public class PickUpController : MonoBehaviour
 
     public static GameObject thrown = null;
 
+    //public GameObject extra;
+    //maybe make a new object instead?
+
 
     private void Start()
     {
@@ -49,6 +52,7 @@ public class PickUpController : MonoBehaviour
             if (GetComponent<Renderer>() != null && equipped)
             {
                 GetComponent<Renderer>().enabled = false;
+                //this doesnt work if you look at the photo after the object is thrown
             }
         }
         else

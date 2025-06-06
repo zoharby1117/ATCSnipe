@@ -276,6 +276,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!4 &146269593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 022166158c9b96d45b84a5d5e2b9051a, type: 3}
@@ -308,6 +309,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &163922441
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -417,6 +419,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &170562665
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -696,6 +699,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!114 &237318558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,6 +815,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &238294376
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -939,6 +944,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!1 &343292470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,6 +1636,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!65 &536798004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1710,6 +1717,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &589252588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2111,6 +2119,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &814048900
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2225,6 +2234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camLoadingSound: {fileID: 8300000, guid: f8bee21b58c39734bb69d4f8ee6043f4, type: 3}
+  i: 0
   player: {fileID: 1367738984}
   activated: 1
 --- !u!82 &829632355
@@ -2666,6 +2676,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!1001 &940866880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2802,6 +2813,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &940866885
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2872,6 +2884,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &950037247
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3253,6 +3266,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &988362543
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4983,6 +4997,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &1632964379
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5473,6 +5488,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!114 &1904885458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5697,6 +5713,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!65 &1912276961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5847,6 +5864,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!65 &1913935844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6281,11 +6299,43 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!4 &2047231202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 09679a6413250694ab0dd5f4a1ce18a0, type: 3}
   m_PrefabInstance: {fileID: 2047231197}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2065623758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2065623759}
+  m_Layer: 0
+  m_Name: ExtraPhotoable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2065623759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065623758}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2084733521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6383,6 +6433,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!54 &2084733524
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6571,6 +6622,7 @@ MonoBehaviour:
   dropForwardForce: 5
   dropUpwardForce: 3
   equipped: 0
+  extra: {fileID: 0}
 --- !u!65 &2123303641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6753,6 +6805,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
+  - {fileID: 2065623759}
   - {fileID: 832575519}
   - {fileID: 8606452013952486940}
   - {fileID: 1277179582}
