@@ -16,9 +16,9 @@ public class PickUpController : MonoBehaviour
 
     public static GameObject thrown = null;
 
-    //public static GameObject extra;//this is a thing I did for debugging
-    //it basically maintains the length list of photoable items when another is removed
-    //It's completely empty
+    //public GameObject extra;
+    //maybe make a new object instead?
+
 
     private void Start()
     {
@@ -52,6 +52,7 @@ public class PickUpController : MonoBehaviour
             if (GetComponent<Renderer>() != null && equipped)
             {
                 GetComponent<Renderer>().enabled = false;
+                //this doesnt work if you look at the photo after the object is thrown
             }
         }
         else
@@ -107,8 +108,7 @@ public class PickUpController : MonoBehaviour
         //new thrown object
         thrown = gameObject;//self
 
-
-
+    
         //add force: vector, mode
         rb.linearVelocity = player.GetComponent<CharacterController>().velocity;
         if (GetComponent<SpriteRenderer>() == null)
