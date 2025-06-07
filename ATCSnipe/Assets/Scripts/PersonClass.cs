@@ -151,11 +151,11 @@ public class PersonClass : MonoBehaviour
             person = new Person(Sprites, Sprites[0].rect.height * 0.03293264f, "Ryan");
             people.Add(GameObject.Find("Ryan"));
         }
-        if (gameObject.name.Equals("Tommy"))
+        if (gameObject.name.Equals("Big Tommy"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Tommy");
             person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Tommy");
-            people.Add(GameObject.Find("Tommy"));
+            people.Add(GameObject.Find("Big Tommy"));
 
         }
         if (gameObject.name.Equals("Pranav"))
