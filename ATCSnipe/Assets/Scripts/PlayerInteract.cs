@@ -4,7 +4,7 @@ public class PlayerInteract : MonoBehaviour
 {
     private Camera cam;
     [SerializeField]
-    private float distance = 3f;
+    private float distance = 7f;
     [SerializeField]
     private LayerMask mask; //all interactables will be added to one layer
     private PlayerUI playerUI;
