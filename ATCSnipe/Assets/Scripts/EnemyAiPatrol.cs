@@ -9,19 +9,21 @@ public class EnemyAiPatrol : MonoBehaviour
     public Vector3 destPoint;
     bool walkpointSet;
     [SerializeField] float Walkrange;
-    float moveSpeed = 20f;
+    float moveSpeed = 10f;
+    float destTimer = 2f;
     public bool satisfied;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = moveSpeed;
-        satisfied = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (destTimer > 0) destTimer -= Time.deltaTime;
+        else destTimer = 0;
         if (satisfied)
             SearchForPlayer();
         else
@@ -32,7 +34,7 @@ public class EnemyAiPatrol : MonoBehaviour
     {
         SearchForDest();
         if (!walkpointSet);
-        if (walkpointSet) agent.SetDestination(destPoint);
+        if (walkpointSet && destTimer == 0) agent.SetDestination(destPoint);
         if (Vector3.Distance(transform.position, destPoint) < 5) walkpointSet = false;
     }
     void SearchForDest()
