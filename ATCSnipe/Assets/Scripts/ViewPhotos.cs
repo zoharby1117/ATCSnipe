@@ -7,9 +7,11 @@ public class ViewPhotos : MonoBehaviour
     [SerializeField] private AudioClip camLoadingSound;
 
     private AudioSource audioSource;
-
-    public int i;
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //private List<Transform[]> photoAlbum;
+    //private GameObject[] objectsInPhoto;
+    private int i;
+    //private CharacterController cc;
     public Transform player;
 
     public static bool viewing;//uses bool not boolean apparently
@@ -32,13 +34,19 @@ public class ViewPhotos : MonoBehaviour
     void Update()
     {
         List<ObjInfo[]> album = TakePhoto.photoAlbum;
-        if (Input.GetKeyDown(KeyCode.X) && album.Count > 0 && !Ending.timerOver)
+        if (Input.GetKeyDown(KeyCode.X) && album.Count > 0)
         {
-            playLoadSound();
+            audioSource.clip = camLoadingSound;
+            audioSource.Play();
+            //viewPhoto();
             viewing = !viewing; //basically flips from true to false and vice versa.
             if (viewing)
             {
-                startView();
+                tempPositions = TakePhoto.generateArray();
+                Time.timeScale = 0;//freeze physics
+                viewPhoto();
+                TextChanger.instance.disableTaking();
+                TextChanger.instance.CurrentPhotoNum(1);
             }
             else
             {
@@ -75,19 +83,18 @@ public class ViewPhotos : MonoBehaviour
                 //player.GetComponent<CharacterController>().minMoveDistance = temp;
                 Time.timeScale = 1;
                 TextChanger.instance.enableTaking();
-
+             
                 activated = true;
             }
 
         }
         if (viewing && album.Count > 1)
         {
-
-            if (activated)
-            {
-
-                TextChanger.instance.CurrentPhotoNum(i + 1);
-            }
+            
+            if (activated) {
+                
+                TextChanger.instance.CurrentPhotoNum(i+1);
+        }
             TextChanger.instance.disableTaking();
             //player.GetComponent<CharacterController>().minMoveDistance = 999;
 
@@ -97,14 +104,14 @@ public class ViewPhotos : MonoBehaviour
                 {
                     i++;
                     viewPhoto();
-                    TextChanger.instance.CurrentPhotoNum(i + 1);
+                    TextChanger.instance.CurrentPhotoNum(i+1);
                     activated = false;
                 }
                 else
                 {
                     i = 0;
                     viewPhoto();
-                    TextChanger.instance.CurrentPhotoNum(i + 1);
+                    TextChanger.instance.CurrentPhotoNum(i+1);
                     activated = false;
                 }
 
@@ -116,14 +123,14 @@ public class ViewPhotos : MonoBehaviour
                 {
                     i--;
                     viewPhoto();
-                    TextChanger.instance.CurrentPhotoNum(i + 1);
+                    TextChanger.instance.CurrentPhotoNum(i+1);
                     activated = false;
                 }
                 else
                 {
                     i = album.Count - 1;
                     viewPhoto();
-                    TextChanger.instance.CurrentPhotoNum(i + 1);
+                    TextChanger.instance.CurrentPhotoNum(i+1);
                     activated = false;
                 }
 
@@ -131,20 +138,7 @@ public class ViewPhotos : MonoBehaviour
         }
     }
 
-    public void startView()//these methods are easier to call in ending
-    {
-        tempPositions = TakePhoto.generateArray();
-        Time.timeScale = 0;//freeze physics
-        viewPhoto();
-        TextChanger.instance.disableTaking();
-        TextChanger.instance.CurrentPhotoNum(1);
-    }
 
-    public void playLoadSound()
-    {
-        audioSource.clip = camLoadingSound;
-        audioSource.Play();
-    }
 
     public void viewPhoto()
     {

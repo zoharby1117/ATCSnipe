@@ -5,11 +5,7 @@ using System.Collections.Generic;//lets us use lists
 public class PersonClass : MonoBehaviour
 {
     public static List<GameObject> thrownObjects;
-
-    public static List<GameObject> people;//this is so that each person has a direction
-
     public Person person;
-
 
     public class Person
     {
@@ -120,7 +116,6 @@ public class PersonClass : MonoBehaviour
             thrownObjects.Add(GameObject.Find("Baseball"));
             thrownObjects.Add(GameObject.Find("Soccer"));
             thrownObjects.Add(GameObject.Find("Weezer"));
-            thrownObjects.Add(GameObject.Find("Nerd"));
 
 
 
@@ -128,95 +123,72 @@ public class PersonClass : MonoBehaviour
 
 
         //instantiating people
-        //if (people == null)
-        //{
-        people = new List<GameObject>();
 
         if (gameObject.name.Equals("Sam_Basil"))
         {
             Sprite[] basilSprites = Resources.LoadAll<Sprite>("ATCS Sprites/Basil");//uploads the folder as an array of sprites. Awesome.
             person = new Person(basilSprites, basilSprites[0].rect.height, "Basil");//sprite height somewhere
-            people.Add(GameObject.Find("Sam_Basil"));
         }
 
         if (gameObject.name.Equals("Dharma"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Dharma");
             person = new Person(Sprites, Sprites[0].rect.height * 0.05f, "Dharma");
-            people.Add(GameObject.Find("Dharma"));
         }
         if (gameObject.name.Equals("Ryan"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Ryan");
             person = new Person(Sprites, Sprites[0].rect.height * 0.03293264f, "Ryan");
-            people.Add(GameObject.Find("Ryan"));
         }
-        if (gameObject.name.Equals("Big Tommy"))
+        if (gameObject.name.Equals("Tommy"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Tommy");
             person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Tommy");
-            people.Add(GameObject.Find("Big Tommy"));
-
         }
         if (gameObject.name.Equals("Pranav"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Pranav");
             person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Pranav");
-            people.Add(GameObject.Find("Pranav"));
-
         }
         if (gameObject.name.Equals("Serra"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Serra");
             person = new Person(Sprites, Sprites[0].rect.height * 0.145487f, "Serra");
-            people.Add(GameObject.Find("Serra"));
-
         }
         if (gameObject.name.Equals("Miguel"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Miguel");
             person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Miguel");
-            people.Add(GameObject.Find("Miguel"));
-
         }
         if (gameObject.name.Equals("Nick"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Nick");
             person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Nick");
-            people.Add(GameObject.Find("Nick"));
-        }
-
-        if (gameObject.name.Equals("Zohar"))
-        {
-            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Zohar");
-            person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Zohar");
-            people.Add(GameObject.Find("Zohar"));
         }
 
         GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
-        //}
+
+
+
+
     }
     void Update()
     {
-        //log
-        if (GetComponent<Renderer>().isVisible)
-        {
-            Debug.Log(person.name);
-        }
-
-
         //responsible for sprite changes
         GameObject thrown = PickUpController.thrown;
-
-        if (thrown != null && !ViewPhotos.viewing && GetComponent<Renderer>().isVisible)
+        if (thrown != null && !ViewPhotos.viewing)
         {
-
-
             Vector3 distanceToObject = transform.position - thrown.GetComponent<Transform>().position;//these are two transforms
             float valueDistance = distanceToObject.magnitude;//float value for vector magnitude
-                                                             //if (valueDistance <= 10 && thrownObjects.Contains(thrown) && thrownObjects.IndexOf(thrown) < person.PersonSprites.Length)//range of 10
-            if (valueDistance <= 7 && thrownObjects.Contains(thrown))
+            //if (valueDistance <= 10 && thrownObjects.Contains(thrown) && thrownObjects.IndexOf(thrown) < person.PersonSprites.Length)//range of 10
+            if (valueDistance <= 10 && thrownObjects.Contains(thrown))
             {
+                //int i = thrownObjects.IndexOf(thrown);
+                //changeSprite(person.PersonSprites[i]);
+                //change sprite to the one whose folder position corresponds to the position of the object in the list.
+                //the folder sprites are stored alphabetically so we need to rename them to match each one with the object.
+
+                //scrapped code above. I think this will be more convenient.
                 foreach (Sprite s in person.PersonSprites)
                 {
                     if (s.name.Equals(thrown.name))//finds the sprite of the same name as the gameObject
