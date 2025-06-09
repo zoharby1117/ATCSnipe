@@ -31,7 +31,7 @@ public class EnemyAiPatrol : MonoBehaviour
     void Patrol()
     {
         SearchForDest();
-        if (!walkpointSet) ;
+        if (!walkpointSet);
         if (walkpointSet) agent.SetDestination(destPoint);
         if (Vector3.Distance(transform.position, destPoint) < 5) walkpointSet = false;
     }

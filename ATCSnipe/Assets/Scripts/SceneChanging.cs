@@ -21,6 +21,6 @@ public class SceneChanging : MonoBehaviour
     }
     public void changeScene()
     {
-        SceneManager.LoadScene("Ending");
+        //SceneManager.LoadScene("Ending");
     }
 }

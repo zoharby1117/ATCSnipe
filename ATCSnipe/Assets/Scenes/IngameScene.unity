@@ -1761,7 +1761,7 @@ MonoBehaviour:
   takenAmtText: {fileID: 1519685574}
   viewingNumText: {fileID: 1800376054}
   timer: {fileID: 762097756}
-  time: 300
+  time: 180
 --- !u!114 &666350471
 MonoBehaviour:
   m_ObjectHideFlags: 0
