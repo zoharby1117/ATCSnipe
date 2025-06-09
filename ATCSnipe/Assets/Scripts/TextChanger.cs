@@ -19,12 +19,15 @@ public class TextChanger : MonoBehaviour
     public float time;
     int minutes;
     int seconds;
+
+    private GameObject image;
     private void Awake()
     {
         instance = this;
     }
     void Start()
     {
+        image = GameObject.Find("CamFrame");
         viewingNumText.enabled = false;
         takenAmtText.text = "Photos Taken: " + takenAmt.ToString();
         timer.text = "Time Left: " + minutes.ToString() + ":0" + seconds.ToString();
@@ -34,10 +37,15 @@ public class TextChanger : MonoBehaviour
     void Update()
     {
         if (time <= 0)
-            {
-                time = 0;
-                SceneChanging.instance.changeScene();
-            }
+        {
+            time = 0;
+            SceneChanging.instance.changeScene();
+        }
+
+        if (Ending.timerOver)
+        {
+            disableTaking();
+        }    
     }
 
     public void AddPhoto()
@@ -48,12 +56,14 @@ public class TextChanger : MonoBehaviour
 
     public void disableTaking()
     {
+        image.SetActive(false);
         takenAmtText.enabled = false;
         viewingNumText.enabled = true;
     }
 
     public void enableTaking()
     {
+        image.SetActive(true);
         takenAmtText.enabled = true;
         viewingNumText.enabled = false;
     }

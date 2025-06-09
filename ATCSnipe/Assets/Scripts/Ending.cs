@@ -12,6 +12,7 @@ public class Ending : MonoBehaviour
     public void EndTimer()
     {
         timerOver = true;
+        //TextChanger.disableTaking();
         ViewPhotos vp = GetComponent<ViewPhotos>();
         ViewPhotos.i = 0;
         vp.playLoadSound();
@@ -60,7 +61,7 @@ public class Ending : MonoBehaviour
         playerUI = GameObject.Find("Player").GetComponent<PlayerUI>();
         indexes = new List<int>();
 
-        Invoke("EndTimer", 3);
+        //Invoke("EndTimer", 3);
     }
 
     // Update is called once per frame
