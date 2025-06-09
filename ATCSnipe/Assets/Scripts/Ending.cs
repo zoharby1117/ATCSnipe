@@ -9,11 +9,11 @@ public class Ending : MonoBehaviour
 
     private List<int> indexes;
 
-    public void EndTimer()
+    public static void EndTimer()
     {
         timerOver = true;
         //TextChanger.disableTaking();
-        ViewPhotos vp = GetComponent<ViewPhotos>();
+        ViewPhotos vp = GameObject.Find("TakePhotos").GetComponent<ViewPhotos>();
         ViewPhotos.i = 0;
         vp.playLoadSound();
         ViewPhotos.viewing = true;

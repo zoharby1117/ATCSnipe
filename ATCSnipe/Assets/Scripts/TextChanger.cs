@@ -39,7 +39,8 @@ public class TextChanger : MonoBehaviour
         if (time <= 0)
         {
             time = 0;
-            SceneChanging.instance.changeScene();
+            //SceneChanging.instance.changeScene();
+            Ending.EndTimer();
         }
 
         if (Ending.timerOver)
