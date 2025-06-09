@@ -15,6 +15,8 @@ public class TextChanger : MonoBehaviour
     public TextMeshProUGUI viewingNumText;
     int viewingNum = 0;
 
+    public GameObject image;
+
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class TextChanger : MonoBehaviour
     {
         viewingNumText.enabled = false;
         takenAmtText.text = "Photos Taken: " + takenAmt.ToString();
+        image = GameObject.Find("CamFrame");
     }
 
     public void AddPhoto()
@@ -35,12 +38,14 @@ public class TextChanger : MonoBehaviour
     public void disableTaking()
     {
         takenAmtText.enabled = false;
+        image.SetActive(false);
         viewingNumText.enabled = true;
     }
 
     public void enableTaking()
     {
         takenAmtText.enabled = true;
+        image.SetActive(true);
         viewingNumText.enabled = false;
     }
 
