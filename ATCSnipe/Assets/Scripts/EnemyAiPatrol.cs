@@ -3,33 +3,40 @@ using UnityEngine.AI;
 
 public class EnemyAiPatrol : MonoBehaviour
 {
-    GameObject player;
+    public Transform player;
     NavMeshAgent agent;
     [SerializeField] LayerMask groundLayer, playerLayer;
-    Vector3 destPoint;
+    public Vector3 destPoint;
     bool walkpointSet;
     [SerializeField] float Walkrange;
-    float moveSpeed = 10f;
+    float moveSpeed = 20f;
+    public bool satisfied;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = moveSpeed;
-        player = GameObject.Find("Player");
+        satisfied = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Patrol();
+        if (satisfied)
+            SearchForPlayer();
+        else
+            Patrol();
+        agent.SetDestination(destPoint);
     }
-    void Patrol() {
+    void Patrol()
+    {
         SearchForDest();
         if (!walkpointSet) ;
         if (walkpointSet) agent.SetDestination(destPoint);
         if (Vector3.Distance(transform.position, destPoint) < 5) walkpointSet = false;
     }
-    void SearchForDest() {
+    void SearchForDest()
+    {
         float z = Random.Range(-Walkrange, Walkrange);
         float x = Random.Range(-Walkrange, Walkrange);
         destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
@@ -37,5 +44,13 @@ public class EnemyAiPatrol : MonoBehaviour
         {
             walkpointSet = true;
         }
+    }
+    void SearchForPlayer()
+    {
+        destPoint = player.transform.position;
+    }
+    public void satisfy()
+    {
+        satisfied = true;
     }
 }

@@ -14,8 +14,11 @@ public class TextChanger : MonoBehaviour
     int takenAmt = 0;
     public TextMeshProUGUI viewingNumText;
     int viewingNum = 0;
-
-
+    public TextMeshProUGUI timer;
+    public static Timer t;
+    public float time;
+    int minutes;
+    int seconds;
     private void Awake()
     {
         instance = this;
@@ -24,6 +27,17 @@ public class TextChanger : MonoBehaviour
     {
         viewingNumText.enabled = false;
         takenAmtText.text = "Photos Taken: " + takenAmt.ToString();
+        timer.text = "Time Left: " + minutes.ToString() + ":0" + seconds.ToString();
+        minutes = Mathf.FloorToInt(time / 60);
+        seconds = Mathf.FloorToInt(time % 60);
+    }
+    void Update()
+    {
+        if (time <= 0)
+            {
+                time = 0;
+                SceneChanging.instance.changeScene();
+            }
     }
 
     public void AddPhoto()
@@ -54,5 +68,16 @@ public class TextChanger : MonoBehaviour
     public void firstView()
     {
         viewingNumText.text = "Viewing mode activated: 0";
+    }
+    public void decreaseTime()
+    {
+        if(time > 0)
+            time -= Time.deltaTime;
+        minutes = Mathf.FloorToInt(time / 60);
+        seconds = Mathf.FloorToInt(time % 60);
+        if (seconds < 10)
+            timer.text = "Time Left: " + minutes.ToString() + ":0" + seconds.ToString();
+        else
+            timer.text = "Time Left: " + minutes.ToString() + ":" + seconds.ToString();
     }
 }

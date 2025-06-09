@@ -6,6 +6,7 @@ public class PersonClass : MonoBehaviour
 {
     public static List<GameObject> thrownObjects;
     public Person person;
+    private EnemyAiPatrol ai;
 
     public class Person
     {
@@ -71,6 +72,7 @@ public class PersonClass : MonoBehaviour
     {
         //changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png", typeof(Sprite)));
         changeSprite(Resources.Load<Sprite>("ATCS Sprites/Basil/Herb2"));
+        ai.satisfy();
     }
 
     public void changeToRyanLaptop()
@@ -171,6 +173,10 @@ public class PersonClass : MonoBehaviour
 
 
 
+    }
+    void Start()
+    {
+        ai = GetComponent<EnemyAiPatrol>();
     }
     void Update()
     {
