@@ -8,7 +8,7 @@ public class ViewPhotos : MonoBehaviour
 
     private AudioSource audioSource;
 
-    public int i;
+    public static int i;
 
     public Transform player;
 
@@ -89,7 +89,6 @@ public class ViewPhotos : MonoBehaviour
                 TextChanger.instance.CurrentPhotoNum(i + 1);
             }
             TextChanger.instance.disableTaking();
-            //player.GetComponent<CharacterController>().minMoveDistance = 999;
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -137,7 +136,7 @@ public class ViewPhotos : MonoBehaviour
         Time.timeScale = 0;//freeze physics
         viewPhoto();
         TextChanger.instance.disableTaking();
-        TextChanger.instance.CurrentPhotoNum(1);
+        TextChanger.instance.CurrentPhotoNum(i+1);
     }
 
     public void playLoadSound()
