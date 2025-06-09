@@ -60,7 +60,7 @@ public class Ending : MonoBehaviour
         playerUI = GameObject.Find("Player").GetComponent<PlayerUI>();
         indexes = new List<int>();
 
-        //Invoke("EndTimer", 3);
+        Invoke("EndTimer", 3);
     }
 
     // Update is called once per frame
@@ -73,19 +73,21 @@ public class Ending : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z) && !indexes.Contains(ViewPhotos.i))
             {
                 //hide all UI
+                GameObject.Find("Canvas").SetActive(false);
                 //screenshot, maybe play a sound
                 Screenshot();
                 //show all UI, display a saved! message
+                GameObject.Find("Canvas").SetActive(true);
             }
 
             //UI depends on if the photo is saved or not
             if (indexes.Contains(ViewPhotos.i))
             {
-                playerUI.UpdateText("Saved!");
+                playerUI.UpdateText("Saved!\n\n\n\n\n\n\n\n\n\n\n\n[Enter] to finish");
             }
             else
             {
-                playerUI.UpdateText("[Z] to save photo");
+                playerUI.UpdateText("[Z] to save photo\n\n\n\n\n\n\n\n\n\n\n\n[Enter] to finish");
             }
         }
     }
