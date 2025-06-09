@@ -72,7 +72,6 @@ public class ViewPhotos : MonoBehaviour
                 }
 
                 //end of copied code
-                //player.GetComponent<CharacterController>().minMoveDistance = temp;
                 Time.timeScale = 1;
                 TextChanger.instance.enableTaking();
 
