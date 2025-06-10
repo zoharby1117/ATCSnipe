@@ -39,7 +39,7 @@ public class PickUpController : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (!ViewPhotos.viewing)
+        if (!ViewPhotos.viewing && !Ending.timerOver)
         {
             Vector3 distanceToPlayer = player.position - transform.position;//these are two transforms
             float valueDistance = distanceToPlayer.magnitude;//float value for vector magnitude

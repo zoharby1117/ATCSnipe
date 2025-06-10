@@ -13,22 +13,18 @@ public class Ending : MonoBehaviour
     private List<int> indexes;
 
     private GameObject canvas;
-    [SerializeField] private Image timeUpImage;
-    [SerializeField] private Image skillIssueImage;
-    [SerializeField] private Image nonSkillIssueVid;
-    private float timeTU = 30; //amount of time the TimeUp image is being popped up
+    [SerializeField] private GameObject timeUpImage;
+    [SerializeField] private GameObject skillIssueImage;
+    [SerializeField] private GameObject nonSkillIssueVid;
+    private float timeTU = 120; //amount of time the TimeUp image is being popped up
     private bool overTU = false;
 
-    
+
     public static void EndTimer()
     {
         timerOver = true;
         //TextChanger.disableTaking();
-        ViewPhotos vp = GameObject.Find("TakePhotos").GetComponent<ViewPhotos>();
-        ViewPhotos.i = 0;
-        vp.playLoadSound();
-        ViewPhotos.viewing = true;
-        vp.startView();
+
         //make sure there is an option for if the timer ends and no photos are taken
 
     }
@@ -94,11 +90,10 @@ public class Ending : MonoBehaviour
         playerUI = GameObject.Find("Player").GetComponent<PlayerUI>();
         canvas = GameObject.Find("Canvas");
         indexes = new List<int>();
-        nonSkillIssueVid.gameObject.SetActive(false);
-        skillIssueImage.gameObject.SetActive(false);
-        timeUpImage.gameObject.SetActive(false);
+        nonSkillIssueVid.SetActive(false);
+        skillIssueImage.SetActive(false);
+        timeUpImage.SetActive(false);
 
-        //Invoke("EndTimer", 3);
     }
 
     // Update is called once per frame
@@ -106,21 +101,34 @@ public class Ending : MonoBehaviour
     {
         if (timerOver)
         {
-            
+
             if (!overTU) //if the time for time up is not over
             {
-                timeUpImage.gameObject.SetActive(true);
+                timeUpImage.SetActive(true);
                 timeTU--;
-                if(timeTU < 0)
+                if (timeTU < 0)
                 {
                     overTU = true;
-                    timeUpImage.gameObject.SetActive(false);
+                    timeUpImage.SetActive(false);
+                    //NOW we do the viewphotos
+                    if (TextChanger.instance.getTakenAmt() < 1)
+                    {
+                        skillIssueImage.SetActive(true);
+                    }
+                    else
+                    {
+                        ViewPhotos vp = GameObject.Find("TakePhotos").GetComponent<ViewPhotos>();
+                        ViewPhotos.i = 0;
+                        vp.playLoadSound();
+                        ViewPhotos.viewing = true;
+                        vp.startView();
+                    }
                 }
             }
 
             //UI: Press Z to save a photo
             //when that key is pressed:
-            if (overTU)
+            if (overTU && TextChanger.instance.getTakenAmt() >= 1)
             {
                 if (Input.GetKeyDown(KeyCode.Z) && !indexes.Contains(ViewPhotos.i))
                 {
@@ -140,20 +148,21 @@ public class Ending : MonoBehaviour
                     playerUI.UpdateText("[Z] to save photo\n\n\n\n\n\n\n\n\n\n\n\n[Enter] to finish");
                 }
 
-                if (TextChanger.instance.getTakenAmt() < 1)
+                //if (TextChanger.instance.getTakenAmt() < 1)
+                //{
+                //if (Input.GetKeyDown(KeyCode.Return))
+                //{
+                //skillIssueImage.SetActive(true);
+                //}
+                //}
+                //else
+                //{
+                if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    if (Input.GetKeyDown(KeyCode.Return))
-                    {
-                        skillIssueImage.gameObject.SetActive(true);
-                    }
+                    //I think this should be a new scene instead
+                    nonSkillIssueVid.SetActive(true);
                 }
-                else
-                {
-                    if (Input.GetKeyDown(KeyCode.Return))
-                    {
-                        nonSkillIssueVid.gameObject.SetActive(true);
-                    }
-                }
+                //}
             }
         }
     }

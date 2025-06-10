@@ -19,7 +19,7 @@ public class TakePhoto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && !ViewPhotos.viewing)
+        if (Input.GetKeyDown(KeyCode.Z) && !ViewPhotos.viewing && !Ending.timerOver)
         {
 
             //Each photo is represented as a list of transforms. (I may change this later.)
@@ -54,15 +54,7 @@ public class TakePhoto : MonoBehaviour
             }
             else
             {
-                //first I need to make a deep copy of the sprite
                 Sprite ogSprite = go.GetComponent<SpriteRenderer>().sprite;
-
-                //deep copy (credit ai mostly)
-                //Texture2D ogTexture = ogSprite.texture;
-                //Texture2D newTexture = new Texture2D(ogTexture.width, ogTexture.height, ogTexture.format, false);
-                //newTexture.CopyPixels(ogTexture);
-                //newTexture.Apply();
-                //Sprite newSprite = Sprite.Create(newTexture, new Rect(go.transform.position.x, go.transform.position.y, newTexture.width, newTexture.height), ogSprite.pivot);
 
                 string spr = "ATCS Sprites/" + go.GetComponent<PersonClass>().person.name + "/" + ogSprite.name;//string is immutable
                 Debug.Log(spr);

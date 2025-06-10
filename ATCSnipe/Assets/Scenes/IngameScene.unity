@@ -4365,8 +4365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2597df0f5fa3af4a9822c70cab25619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeUpImage: {fileID: 0}
-  skillIssueImage: {fileID: 0}
+  timeUpImage: {fileID: 1386763830}
+  skillIssueImage: {fileID: 1326845691}
   nonSkillIssueVid: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
@@ -6775,7 +6775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1326845692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6990,7 +6990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1386763831
 RectTransform:
   m_ObjectHideFlags: 0
