@@ -16,9 +16,8 @@ public class PickUpController : MonoBehaviour
 
     public static GameObject thrown = null;
 
-    //public static GameObject extra;//this is a thing I did for debugging
-    //it basically maintains the length list of photoable items when another is removed
-    //It's completely empty
+    public static bool stopDisappearing = false;//for playerInteract
+
 
     private void Start()
     {
@@ -31,8 +30,14 @@ public class PickUpController : MonoBehaviour
         container.localScale = Vector3.one;
         //extra = GameObject.Find("ExtraPhotoable");
         //extra.tag = "Untagged";
+
+
     }
     private void Update()
+    {
+        stopDisappearing = false;
+    }
+    private void LateUpdate()
     {
         if (!ViewPhotos.viewing)
         {
@@ -46,12 +51,54 @@ public class PickUpController : MonoBehaviour
             {
                 Drop();
             }
+
+            //stopDisappearing = false;
+            if (!stopDisappearing)
+            {
+                if (valueDistance <= pickUpRange && !equipped && !gameObject == thrown)//shows UI
+                {
+                    stopDisappearing = true;
+                    GameObject player = GameObject.Find("Player");
+                    string displayName = gameObject.name;
+                    //special names
+                    if (displayName.Equals("Megaman"))
+                    {
+                        displayName = "Mega Man";
+                    }
+                    if (displayName.Equals("Soccer"))
+                    {
+                        displayName = "Soccer Ball";
+                    }
+                    if (displayName.Equals("RubberDuck_Yellow"))
+                    {
+                        displayName = "Rubber Duck";
+                    }
+                    if (displayName.Equals("TurkeyFlag"))
+                    {
+                        displayName = "Turkey Flag";
+                    }
+                    if (displayName.Equals("Herb_GreenPot"))
+                    {
+                        displayName = "Mysterious Herb";
+                    }
+                    player.GetComponent<PlayerUI>().UpdateText(displayName + " [E]");
+                    Debug.Log(gameObject.name);
+                }
+                else
+                {
+                    stopDisappearing = false;
+                }
+            }
+
         }
         if (ViewPhotos.viewing)
         {
-            if (GetComponent<Renderer>() != null && equipped)
+            if (GetComponent<Renderer>() != null)
             {
-                GetComponent<Renderer>().enabled = false;
+                if (container.position.Equals(transform.position) && container.localRotation.Equals(transform.localRotation))
+                {
+                    GetComponent<Renderer>().enabled = false;
+                }
             }
         }
         else

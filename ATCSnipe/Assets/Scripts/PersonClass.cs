@@ -122,6 +122,7 @@ public class PersonClass : MonoBehaviour
             thrownObjects.Add(GameObject.Find("Baseball"));
             thrownObjects.Add(GameObject.Find("Soccer"));
             thrownObjects.Add(GameObject.Find("Weezer"));
+            thrownObjects.Add(GameObject.Find("Nerd"));
 
 
 
@@ -172,6 +173,11 @@ public class PersonClass : MonoBehaviour
             person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Nick");
         }
 
+        if (gameObject.name.Equals("Zohar"))
+        {
+            Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Zohar");
+            person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Zohar");
+        }
         GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
 
 

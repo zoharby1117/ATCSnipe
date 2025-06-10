@@ -29,7 +29,8 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Ending.timerOver && !instructions)
+        Debug.Log("this one" + PickUpController.stopDisappearing);
+        if (!Ending.timerOver && !instructions && !PickUpController.stopDisappearing)
         {
 
             playerUI.UpdateText(string.Empty);//if there is no interaction then no text
