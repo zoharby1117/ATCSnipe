@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.IO;//lets us use path
+using System.Collections;
 using System.Collections.Generic;
 public class Ending : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Ending : MonoBehaviour
     private PlayerUI playerUI;
 
     private List<int> indexes;
+
+    private GameObject canvas;
 
     public static void EndTimer()
     {
@@ -24,7 +27,18 @@ public class Ending : MonoBehaviour
 
     private void Screenshot()
     {
+        StartCoroutine(CaptureScreenshotCoroutine());
+    }
+    IEnumerator CaptureScreenshotCoroutine()
+    {
+        //hide all UI
+
+        canvas.SetActive(false);
+
         //the following code is ChatGPT generated but I will do my best to explain
+
+
+        yield return new WaitForEndOfFrame();//waits for end of frame when screenshot is taken
 
         string folder = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots");//special concatenation for paths. 
                                                                                      // It will end up like(Path directory of game)/Screenshots.
@@ -47,18 +61,30 @@ public class Ending : MonoBehaviour
         ScreenCapture.CaptureScreenshot(relativePath);//takes the screenshot
         string fullPath = Path.Combine(folder, filename);//now we have (GameDirectory path)/Screenshots/BeautifulSnipe_(datetime).png
 
-
+        //show all UI, display a saved! message
+        //Invoke("ShowCanvas", 1.0f);//need to wait a frame
+        //System.Diagnostics.Process.Start("explorer.exe", folder);
         Debug.Log("Screenshot captured: " + Path.Combine(folder, filename));//log
         Debug.Log("Screenshot saved to: " + fullPath);
+
+        canvas.SetActive(true);
+
         indexes.Add(ViewPhotos.i);
-        //System.Diagnostics.Process.Start("explorer.exe", folder);
 
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void ShowCanvas()
+    {
+        canvas.SetActive(true);
+
+        indexes.Add(ViewPhotos.i);
+    }
     void Start()
     {
         timerOver = false;
         playerUI = GameObject.Find("Player").GetComponent<PlayerUI>();
+        canvas = GameObject.Find("Canvas");
         indexes = new List<int>();
 
         //Invoke("EndTimer", 3);
@@ -73,12 +99,10 @@ public class Ending : MonoBehaviour
             //when that key is pressed:
             if (Input.GetKeyDown(KeyCode.Z) && !indexes.Contains(ViewPhotos.i))
             {
-                //hide all UI
-                GameObject.Find("Canvas").SetActive(false);
+
                 //screenshot, maybe play a sound
                 Screenshot();
-                //show all UI, display a saved! message
-                GameObject.Find("Canvas").SetActive(true);
+
             }
 
             //UI depends on if the photo is saved or not

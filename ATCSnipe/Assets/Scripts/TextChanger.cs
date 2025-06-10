@@ -36,7 +36,7 @@ public class TextChanger : MonoBehaviour
     }
     void Update()
     {
-        if (time <= 0)
+        if (time <= 0 && !Ending.timerOver)
         {
             time = 0;
             //SceneChanging.instance.changeScene();
