@@ -19,6 +19,8 @@ public class ViewPhotos : MonoBehaviour
     private float temp;
 
     private ObjInfo[] tempPositions;
+
+   
     void Start()
     {
         i = 0;//starts at first photo
