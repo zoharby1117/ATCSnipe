@@ -2,6 +2,8 @@ using UnityEngine;
 using System.IO;//lets us use path
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+
 public class Ending : MonoBehaviour
 {
     public static bool timerOver;
@@ -11,7 +13,13 @@ public class Ending : MonoBehaviour
     private List<int> indexes;
 
     private GameObject canvas;
+    [SerializeField] private Image timeUpImage;
+    [SerializeField] private Image skillIssueImage;
+    [SerializeField] private Image nonSkillIssueVid;
+    private float timeTU = 30; //amount of time the TimeUp image is being popped up
+    private bool overTU = false;
 
+    
     public static void EndTimer()
     {
         timerOver = true;
@@ -86,6 +94,9 @@ public class Ending : MonoBehaviour
         playerUI = GameObject.Find("Player").GetComponent<PlayerUI>();
         canvas = GameObject.Find("Canvas");
         indexes = new List<int>();
+        nonSkillIssueVid.gameObject.SetActive(false);
+        skillIssueImage.gameObject.SetActive(false);
+        timeUpImage.gameObject.SetActive(false);
 
         //Invoke("EndTimer", 3);
     }
@@ -95,24 +106,54 @@ public class Ending : MonoBehaviour
     {
         if (timerOver)
         {
+            
+            if (!overTU) //if the time for time up is not over
+            {
+                timeUpImage.gameObject.SetActive(true);
+                timeTU--;
+                if(timeTU < 0)
+                {
+                    overTU = true;
+                    timeUpImage.gameObject.SetActive(false);
+                }
+            }
+
             //UI: Press Z to save a photo
             //when that key is pressed:
-            if (Input.GetKeyDown(KeyCode.Z) && !indexes.Contains(ViewPhotos.i))
+            if (overTU)
             {
+                if (Input.GetKeyDown(KeyCode.Z) && !indexes.Contains(ViewPhotos.i))
+                {
 
-                //screenshot, maybe play a sound
-                Screenshot();
+                    //screenshot, maybe play a sound
+                    Screenshot();
 
-            }
+                }
 
-            //UI depends on if the photo is saved or not
-            if (indexes.Contains(ViewPhotos.i))
-            {
-                playerUI.UpdateText("Saved!\n\n\n\n\n\n\n\n\n\n\n\n[Enter] to finish");
-            }
-            else
-            {
-                playerUI.UpdateText("[Z] to save photo\n\n\n\n\n\n\n\n\n\n\n\n[Enter] to finish");
+                //UI depends on if the photo is saved or not
+                if (indexes.Contains(ViewPhotos.i))
+                {
+                    playerUI.UpdateText("Saved!\n\n\n\n\n\n\n\n\n\n\n\n[Enter] to finish");
+                }
+                else
+                {
+                    playerUI.UpdateText("[Z] to save photo\n\n\n\n\n\n\n\n\n\n\n\n[Enter] to finish");
+                }
+
+                if (TextChanger.instance.getTakenAmt() < 1)
+                {
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        skillIssueImage.gameObject.SetActive(true);
+                    }
+                }
+                else
+                {
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        nonSkillIssueVid.gameObject.SetActive(true);
+                    }
+                }
             }
         }
     }

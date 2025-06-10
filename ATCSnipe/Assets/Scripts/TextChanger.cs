@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -92,5 +93,10 @@ public class TextChanger : MonoBehaviour
             timer.text = "Time Left: " + minutes.ToString() + ":0" + seconds.ToString();
         else
             timer.text = "Time Left: " + minutes.ToString() + ":" + seconds.ToString();
+    }
+
+    public int getTakenAmt()
+    {
+        return takenAmt;
     }
 }
