@@ -21,6 +21,7 @@ public class SceneChanging : MonoBehaviour
     }
     public void changeScene()
     {
-        //SceneManager.LoadScene("Ending");
+        //SceneManager.LoadScene("TimeUp");
+        //SceneManager.MoveGameObjectToScene(GameObject.Find("TakePhotos"), SceneManager.GetSceneByName("TimeUp"));
     }
 }
