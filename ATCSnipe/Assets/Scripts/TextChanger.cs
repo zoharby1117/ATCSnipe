@@ -19,6 +19,7 @@ public class TextChanger : MonoBehaviour
     public float time;
     int minutes;
     int seconds;
+    bool countingDown = true;
 
     private GameObject image;
     private void Awake()
@@ -39,6 +40,7 @@ public class TextChanger : MonoBehaviour
         if (time <= 0 && !Ending.timerOver)
         {
             time = 0;
+            countingDown = false;
             //SceneChanging.instance.changeScene();
             Ending.EndTimer();
         }
@@ -82,7 +84,7 @@ public class TextChanger : MonoBehaviour
     }
     public void decreaseTime()
     {
-        if(time > 0)
+        if(time > 0 && countingDown)
             time -= Time.deltaTime;
         minutes = Mathf.FloorToInt(time / 60);
         seconds = Mathf.FloorToInt(time % 60);
