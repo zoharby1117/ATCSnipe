@@ -3,6 +3,7 @@ using System.IO;//lets us use path
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour
 {
@@ -148,21 +149,12 @@ public class Ending : MonoBehaviour
                     playerUI.UpdateText("[Z] to save photo\n\n\n\n\n\n\n\n\n\n\n\n[Enter] to finish");
                 }
 
-                //if (TextChanger.instance.getTakenAmt() < 1)
-                //{
-                //if (Input.GetKeyDown(KeyCode.Return))
-                //{
-                //skillIssueImage.SetActive(true);
-                //}
-                //}
-                //else
-                //{
+
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    //I think this should be a new scene instead
-                    nonSkillIssueVid.SetActive(true);
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
-                //}
+
             }
         }
     }
