@@ -192,8 +192,8 @@ public class PersonClass : MonoBehaviour
         {
             Vector3 distanceToObject = transform.position - thrown.GetComponent<Transform>().position;//these are two transforms
             float valueDistance = distanceToObject.magnitude;//float value for vector magnitude
-            //if (valueDistance <= 10 && thrownObjects.Contains(thrown) && thrownObjects.IndexOf(thrown) < person.PersonSprites.Length)//range of 10
-            if (valueDistance <= 10 && thrownObjects.Contains(thrown))
+            Renderer r = GetComponent<Renderer>();
+            if (valueDistance <= 10 && thrownObjects.Contains(thrown) && r.isVisible)//checks if it is within range, if the thrown object is valid, if the person is seen
             {
                 //int i = thrownObjects.IndexOf(thrown);
                 //changeSprite(person.PersonSprites[i]);
