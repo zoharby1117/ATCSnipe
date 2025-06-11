@@ -65,6 +65,7 @@ public class PersonClass : MonoBehaviour
                 Invoke("changeToSerraFlag", 3.0f);
 
             }
+            ai.satisfy();
         }
     }
 
@@ -72,29 +73,24 @@ public class PersonClass : MonoBehaviour
     {
         //changeSprite((Sprite)AssetDatabase.LoadAssetAtPath("Assets/Resources/ATCS Sprites/Basil/Herb2.png", typeof(Sprite)));
         changeSprite(Resources.Load<Sprite>("ATCS Sprites/Basil/Herb2"));
-        ai.satisfy();
     }
 
     public void changeToRyanLaptop()
     {
         changeSprite(Resources.Load<Sprite>("ATCS Sprites/Ryan/Laptop2"));
-        ai.satisfy();
     }
 
     public void changeToTommyChair()
     {
         changeSprite(Resources.Load<Sprite>("ATCS Sprites/Tommy/Chair2"));
-        ai.satisfy();
     }
     public void changeToTommyPhone()
     {
         changeSprite(Resources.Load<Sprite>("ATCS Sprites/Tommy/Phone2"));
-        ai.satisfy();
     }
     public void changeToSerraFlag()
     {
         changeSprite(Resources.Load<Sprite>("ATCS Sprites/Serra/TurkeyFlag2"));
-        ai.satisfy();
     }
 
 

@@ -11,7 +11,8 @@ public class EnemyAiPatrol : MonoBehaviour
     [SerializeField] float Walkrange;
     float moveSpeed = 10f;
     float destTimer = 2f;
-    public bool satisfied;
+    bool satisfied;
+    bool tooClose;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,8 +25,12 @@ public class EnemyAiPatrol : MonoBehaviour
     {
         if (destTimer > 0) destTimer -= Time.deltaTime;
         else destTimer = 0;
-        if (satisfied)
+        agent.speed = moveSpeed;
+        tooClose = Physics.CheckSphere(transform.position, 5f, playerLayer);
+        if (satisfied) { 
+            notTooClose();
             SearchForPlayer();
+        }
         else
             Patrol();
         agent.SetDestination(destPoint);
@@ -33,7 +38,7 @@ public class EnemyAiPatrol : MonoBehaviour
     void Patrol()
     {
         SearchForDest();
-        if (!walkpointSet);
+        if (!walkpointSet) ;
         if (walkpointSet && destTimer == 0) agent.SetDestination(destPoint);
         if (Vector3.Distance(transform.position, destPoint) < 5) walkpointSet = false;
     }
@@ -54,5 +59,10 @@ public class EnemyAiPatrol : MonoBehaviour
     public void satisfy()
     {
         satisfied = true;
+    }
+    void notTooClose()
+    {
+        if (tooClose) moveSpeed = 0f;
+        else moveSpeed = 5f;
     }
 }
