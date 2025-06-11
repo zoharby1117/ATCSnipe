@@ -11,7 +11,15 @@ public class SceneChanging : MonoBehaviour
     }
     void Start()
     {
-
+        int i = SceneManager.GetActiveScene().buildIndex;
+        if (i == 1)
+        {
+            Invoke("changeScene", 12.0f);
+        }
+        else if (i == 2)
+        {
+            Invoke("changeScene", 20.0f);
+        }
     }
 
     // Update is called once per frame
@@ -21,6 +29,7 @@ public class SceneChanging : MonoBehaviour
     }
     public void changeScene()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //SceneManager.LoadScene("TimeUp");
         //SceneManager.MoveGameObjectToScene(GameObject.Find("TakePhotos"), SceneManager.GetSceneByName("TimeUp"));
     }
