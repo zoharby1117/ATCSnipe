@@ -401,7 +401,6 @@ MonoBehaviour:
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
   Walkrange: 50
-  satisfied: 0
 --- !u!114 &149284587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,7 +1903,6 @@ MonoBehaviour:
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
   Walkrange: 50
-  satisfied: 0
 --- !u!114 &343292477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,7 +2288,6 @@ MonoBehaviour:
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
   Walkrange: 50
-  satisfied: 0
 --- !u!114 &433342430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5333,7 +5330,6 @@ MonoBehaviour:
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
   Walkrange: 50
-  satisfied: 0
 --- !u!114 &958528011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6044,7 +6040,6 @@ MonoBehaviour:
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
   Walkrange: 50
-  satisfied: 0
 --- !u!114 &1104183780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6734,7 +6729,6 @@ MonoBehaviour:
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
   Walkrange: 50
-  satisfied: 0
 --- !u!114 &1324295388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7460,7 +7454,6 @@ MonoBehaviour:
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
   Walkrange: 50
-  satisfied: 0
 --- !u!114 &1449605845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7782,7 +7775,6 @@ MonoBehaviour:
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
   Walkrange: 50
-  satisfied: 0
 --- !u!195 &1494583505
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8639,7 +8631,6 @@ MonoBehaviour:
     m_Bits: 128
   destPoint: {x: 0, y: 0, z: 0}
   Walkrange: 50
-  satisfied: 0
 --- !u!114 &1681865428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10747,7 +10738,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: fcc6820b64c73b243a73181a0f91a9ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10786,7 +10777,7 @@ Transform:
   m_GameObject: {fileID: 2100715289}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.2, y: -0.86, z: -3.7}
+  m_LocalPosition: {x: 5.2, y: 6.57, z: -3.7}
   m_LocalScale: {x: 33.206448, y: 13.776773, z: 21.372507}
   m_ConstrainProportionsScale: 0
   m_Children: []
