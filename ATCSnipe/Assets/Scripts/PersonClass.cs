@@ -8,6 +8,8 @@ public class PersonClass : MonoBehaviour
     public Person person;
     private EnemyAiPatrol ai;
 
+    private List<GameObject> satisfyList;
+
     public class Person
     {
         public float height;
@@ -65,7 +67,6 @@ public class PersonClass : MonoBehaviour
                 Invoke("changeToSerraFlag", 3.0f);
 
             }
-            ai.satisfy();
         }
     }
 
@@ -126,53 +127,75 @@ public class PersonClass : MonoBehaviour
 
 
         //instantiating people
+        satisfyList = new List<GameObject>();
 
         if (gameObject.name.Equals("Sam_Basil"))
         {
             Sprite[] basilSprites = Resources.LoadAll<Sprite>("ATCS Sprites/Basil");//uploads the folder as an array of sprites. Awesome.
             person = new Person(basilSprites, basilSprites[0].rect.height, "Basil");//sprite height somewhere
+            satisfyList.Add(GameObject.Find("Herb_GreenPot"));
+            satisfyList.Add(GameObject.Find("Tea"));
         }
 
         if (gameObject.name.Equals("Dharma"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Dharma");
             person = new Person(Sprites, Sprites[0].rect.height * 0.05f, "Dharma");
+            satisfyList.Add(GameObject.Find("Pig"));
         }
         if (gameObject.name.Equals("Ryan"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Ryan");
             person = new Person(Sprites, Sprites[0].rect.height * 0.03293264f, "Ryan");
+            satisfyList.Add(GameObject.Find("Megaman"));
+            satisfyList.Add(GameObject.Find("Sigma"));
+            satisfyList.Add(GameObject.Find("Laptop"));
         }
         if (gameObject.name.Equals("Tommy"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Tommy");
             person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Tommy");
+            satisfyList.Add(GameObject.Find("Sigma"));
+            satisfyList.Add(GameObject.Find("Cat"));
+            satisfyList.Add(GameObject.Find("Chair"));
         }
         if (gameObject.name.Equals("Pranav"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Pranav");
             person = new Person(Sprites, Sprites[0].rect.height * 0.04f, "Pranav");
+            satisfyList.Add(GameObject.Find("Prawn"));
+            satisfyList.Add(GameObject.Find("Baseball"));
+            satisfyList.Add(GameObject.Find("Soccer"));
         }
         if (gameObject.name.Equals("Serra"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Serra");
             person = new Person(Sprites, Sprites[0].rect.height * 0.145487f, "Serra");
+            satisfyList.Add(GameObject.Find("TurkeyFlag"));
+            satisfyList.Add(GameObject.Find("Tea"));
         }
         if (gameObject.name.Equals("Miguel"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Miguel");
             person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Miguel");
+            satisfyList.Add(GameObject.Find("Weezer"));
         }
         if (gameObject.name.Equals("Nick"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Nick");
             person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Nick");
+            satisfyList.Add(GameObject.Find("Boba"));
+            satisfyList.Add(GameObject.Find("Cat"));
+            satisfyList.Add(GameObject.Find("Soccer"));
         }
 
         if (gameObject.name.Equals("Zohar"))
         {
             Sprite[] Sprites = Resources.LoadAll<Sprite>("ATCS Sprites/Zohar");
             person = new Person(Sprites, Sprites[0].rect.height * 0.045f, "Zohar");
+            satisfyList.Add(GameObject.Find("Kirby"));
+            satisfyList.Add(GameObject.Find("Nerd"));
+            satisfyList.Add(GameObject.Find("Rickroll"));
         }
         GetComponent<SpriteRenderer>().sprite = person.PersonSprites[0];
 
@@ -205,6 +228,10 @@ public class PersonClass : MonoBehaviour
                 {
                     if (s.name.Equals(thrown.name))//finds the sprite of the same name as the gameObject
                     {
+                        if (satisfyList.Contains(thrown))
+                        {
+                            ai.satisfy();
+                        }
                         changeSprite(s);
                         return;
                     }

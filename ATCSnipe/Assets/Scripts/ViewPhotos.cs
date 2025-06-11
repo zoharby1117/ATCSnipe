@@ -148,15 +148,7 @@ public class ViewPhotos : MonoBehaviour
 
     public void viewPhoto()
     {
-        GameObject[] makeInvisible = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject go in makeInvisible)//a list that should contain the player object and the held object
-        {
-            Renderer r = go.GetComponent<Renderer>();//works on both mesh (3d) and sprite (2d) renderers
-            if (r != null)
-            {
-                r.enabled = false;
-            }
-        }
+        
         //(Player)player.GetComponent(InputManager).OnFootDisable();
         GameObject[] objectsInPhoto = GameObject.FindGameObjectsWithTag("Photoable");
         List<ObjInfo[]> album = TakePhoto.photoAlbum;

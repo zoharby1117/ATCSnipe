@@ -16,7 +16,7 @@ public class Ending : MonoBehaviour
     private GameObject canvas;
     [SerializeField] private GameObject timeUpImage;
     [SerializeField] private GameObject skillIssueImage;
-    [SerializeField] private GameObject nonSkillIssueVid;
+    //[SerializeField] private GameObject nonSkillIssueVid;
     private float timeTU = 120; //amount of time the TimeUp image is being popped up
     private bool overTU = false;
 
@@ -91,7 +91,7 @@ public class Ending : MonoBehaviour
         playerUI = GameObject.Find("Player").GetComponent<PlayerUI>();
         canvas = GameObject.Find("Canvas");
         indexes = new List<int>();
-        nonSkillIssueVid.SetActive(false);
+        //nonSkillIssueVid.SetActive(false);
         skillIssueImage.SetActive(false);
         timeUpImage.SetActive(false);
 
